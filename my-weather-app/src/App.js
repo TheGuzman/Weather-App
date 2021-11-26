@@ -1,13 +1,19 @@
+import * as React from 'react';
+import WeatherPage from './pages/weather-page.jsx';
+import  ourtheme   from './create-theme.js';
+import { ThemeProvider } from '@mui/material/styles';
 
-import './App.css';
+
 
 function App() {
   return (
-    <div>
-    
+    <React.Fragment>
+     <ThemeProvider theme={ourtheme}>
+       <WeatherPage></WeatherPage>
+       </ThemeProvider>;
 
-    </div>
+    </React.Fragment>
   );
 }
 
-export default App;
+export default App
