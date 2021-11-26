@@ -1,10 +1,20 @@
 import { createTheme } from '@mui/material/styles';
-// import CircularSpUIv3TBook from './assets/fonts/CircularSpUIv3TBook.ttf';
+import CircularSpUIv3TBook from './assets/fonts/CircularSpUIv3TBook.ttf';
 
 const ourtheme = createTheme({
-  // typography: {
-  //   fontFamily: 'CircularSpUIv3TBook',
-  // },
+  typography: {
+    fontFamily: ['"CircularSpUIv3TBook"','Arial'].join(','),
+  },
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: `
+        @font-face {
+          font-family: 'CircularSpUIv3TBook';
+          src: local('CircularSpUIv3TBook'), url(${CircularSpUIv3TBook}) format('truetype');
+        }
+      `,
+    },
+  },
   palette: {
     primary: {
       light: '#7fd1ff',
