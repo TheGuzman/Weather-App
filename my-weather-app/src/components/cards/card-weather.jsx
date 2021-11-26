@@ -4,6 +4,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@mui/material/Grid';
+import { CardMedia } from '@material-ui/core';
 
 const useStyles = makeStyles({
   root: {
@@ -37,18 +38,28 @@ export default function CardWeather() {
     <Card className={classes.root} >
       <CardContent>
       
-        <Typography className={classes.title} gutterBottom>
+        <Typography className={classes.title}>
           Lunes
         </Typography>
 
-         <div className={classes.temperature}>
+        <CardMedia
+          className={classes.media}
+          image=""
+        />
+        
+        <Grid container spacing={2}>
+        <Grid item>
         <Typography className={classes.pos}>
-          14ºC 
+          14ºC       
         </Typography> 
+         
+        </Grid>
+        <Grid item>
         <Typography className={classes.pus}>
-          9ºC 
+                    9ºC 
         </Typography>
-        </div>
+        </Grid>
+        </Grid>
       
     
       </CardContent>
