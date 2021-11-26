@@ -1,8 +1,9 @@
 import Grid from '@mui/material/Grid';
 import CardWeather from '../cards/card-weather';
 
-export default function WeeklyWeatherSection() {
+export default function WeeklyWeatherSection(props) {
 
+    const weeklyArray = props.info.daily?.slice(1,7)
 
     return (
         <Grid container xs={12} sx={{
@@ -10,9 +11,9 @@ export default function WeeklyWeatherSection() {
             flexDirection: 'row',
             justifyContent: 'space-around'
         }}>
-                <Grid item >
-                    <CardWeather></CardWeather>
-                </Grid>
+             {weeklyArray?.map((e,i)=> <Grid item >
+                    <CardWeather info={e} key={i}></CardWeather>
+                </Grid>)}  
         </Grid>
 
     )

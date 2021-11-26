@@ -27,10 +27,14 @@ const useStyles = makeStyles({
   card: {
     backgroundColor: 'primary.main'
   },
+  media:{
+    height:'80px',
+    width:'80px',
+  }
 
 });
 
-export default function CardWeather() {
+export default function CardWeather(props) {
   const classes = useStyles();
 
 
@@ -38,23 +42,23 @@ export default function CardWeather() {
     <Card className={classes.root} >
       <CardContent>
 
-        <Typography className={classes.title}> Lunes</Typography>
+        <Typography className={classes.title}>dia</Typography>
 
         <CardMedia
           className={classes.media}
-          image=""
+          image={window.location.origin + `/img/${props.info.weather[0].icon}.png`}
         />
 
         <Grid container spacing={2}>
           <Grid item>
             <Typography className={classes.pos}>
-              14ºC
+            {props.info.temp.max}
             </Typography>
 
           </Grid>
           <Grid item>
             <Typography className={classes.pus}>
-              9ºC
+            {props.info.temp.min}
             </Typography>
           </Grid>
         </Grid>

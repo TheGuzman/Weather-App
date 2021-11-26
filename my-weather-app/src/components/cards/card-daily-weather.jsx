@@ -30,7 +30,7 @@ const useStyles = makeStyles({
 
 });
 
-export default function CardDailyWeather() {
+export default function CardDailyWeather(props) {
   const classes = useStyles();
 
 
@@ -42,13 +42,13 @@ export default function CardDailyWeather() {
 
         <CardMedia
           className={classes.media}
-          image=""
+          image={window.location.origin + `/img/${props.info.weather[0].icon}.png`}
         />
 
         <Grid container spacing={2}>
           <Grid item>
             <Typography className={classes.pos}>
-              14ºC
+              {props.info.temp}
             </Typography>
 
           </Grid>

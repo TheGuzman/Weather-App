@@ -34,8 +34,19 @@ const useStyles = makeStyles({
 });
 
 
-export default function SearchBar() {
+export default function SearchBar(props) {
     const classes = useStyles();
+    let input='';
+
+
+function handleSubmit(e){
+    e.preventDefault()
+    input = e.target.value.toLowerCase();
+    input = input.charAt(0).toUpperCase() + input.slice(1);
+    props.onSearch(input)
+}
+
+
 
     return (
         <Box sx={{
@@ -48,7 +59,7 @@ export default function SearchBar() {
                         <Button variant="contained" className={classes.button}>Buscar</Button>
                     </div> */}
                     <Paper sx={{borderRadius: '20px'}}>
-                        <IconButton sx={{ p: '10px' }} aria-label="menu">
+                        <IconButton type="submit" sx={{ p: '10px' }} aria-label="menu">
                             <SearchIcon />
                         </IconButton>
                         <InputBase
@@ -56,11 +67,11 @@ export default function SearchBar() {
                             placeholder="Search Google Maps"
                             inputProps={{ 'aria-label': 'search google maps' }}
                         />
-                        <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
+                        <IconButton type="submit" sx={{ p: '10px' }} aria-label="search" >
                             <MyLocationIcon></MyLocationIcon>
                         </IconButton>
                     </Paper>
-                    <Button variant="contained" className={classes.button}>Buscar</Button>
+                    <Button variant="contained" className={classes.button} onClick={handleSubmit}>Buscar</Button>
                 </Grid>
             </Grid>
         </Box>
