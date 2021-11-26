@@ -27,18 +27,25 @@ const useStyles = makeStyles({
   card: {
     backgroundColor: 'primary.main'
   },
+  media:{
+    height:'50px',
+    width:'50px',
+  }
 
 });
 
-export default function CardDailyWeather(props) {
+export default function CardHourlyWeather(props) {
   const classes = useStyles();
+
+  let time = new Date(props.info.dt*1000).toLocaleTimeString('es-Es', { hour: 'numeric', minute: 'numeric' })
+  console.log(time)
 
 
   return (
     <Card className={classes.root} >
       <CardContent>
 
-        <Typography className={classes.title}> Lunes</Typography>
+        <Typography className={classes.title}>{time}</Typography>
 
         <CardMedia
           className={classes.media}

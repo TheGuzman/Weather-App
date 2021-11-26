@@ -37,13 +37,21 @@ const useStyles = makeStyles({
 export default function SearchBar(props) {
     const classes = useStyles();
     let input='';
+    let searchInfo ='';
+    
 
 
 function handleSubmit(e){
     e.preventDefault()
-    input = e.target.value.toLowerCase();
+    input = searchInfo.toLowerCase();
     input = input.charAt(0).toUpperCase() + input.slice(1);
+    console.log(input)
     props.onSearch(input)
+}
+
+function handleOnChange(e){
+    searchInfo = e.target.value
+    return searchInfo
 }
 
 
@@ -59,13 +67,13 @@ function handleSubmit(e){
                         <Button variant="contained" className={classes.button}>Buscar</Button>
                     </div> */}
                     <Paper sx={{borderRadius: '20px'}}>
-                        <IconButton type="submit" sx={{ p: '10px' }} aria-label="menu">
+                        <IconButton type="submit" sx={{ p: '10px' }} aria-label="menu" onClick={handleSubmit}>
                             <SearchIcon />
                         </IconButton>
                         <InputBase
                             sx={{ ml: 1, flex: 1 }}
-                            placeholder="Search Google Maps"
-                            inputProps={{ 'aria-label': 'search google maps' }}
+                            placeholder="Find a place"
+                            onChange={handleOnChange}
                         />
                         <IconButton type="submit" sx={{ p: '10px' }} aria-label="search" >
                             <MyLocationIcon></MyLocationIcon>

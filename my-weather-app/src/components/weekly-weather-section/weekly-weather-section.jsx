@@ -6,7 +6,7 @@ export default function WeeklyWeatherSection(props) {
     const weeklyArray = props.info.daily?.slice(1,7)
 
     return (
-        <Grid container xs={12} sx={{
+        <Grid container sx={{
             color: 'primary.contrastText',
             flexDirection: 'row',
             justifyContent: 'space-around'

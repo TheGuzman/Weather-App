@@ -57,9 +57,9 @@ export default function WeatherPage() {
     }
 
 
-    function search(input) {
-        getWeatherInfoByCity(input)
-    }
+const search = input => {
+    getWeatherInfoByCity(input)
+} 
 
     // const onTempChange = () => {
     //     if (newTempUnit === 'metric') {

@@ -6,7 +6,7 @@ export default function InteractiveSection() {
 
 
     return (
-        <Grid container xs={12} sx={{
+        <Grid container  sx={{
             color: 'primary.contrastText',
             flexDirection: 'row',
             justifyContent: 'space-around'
