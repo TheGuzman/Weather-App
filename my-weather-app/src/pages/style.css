@@ -1,0 +1,10 @@
+body{
+    background-image: url('../img/background/background_night.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    /* background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,1) 100%); */
+    
+    
+}
