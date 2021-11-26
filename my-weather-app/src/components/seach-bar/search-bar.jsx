@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { IconButton, InputBase, Paper } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import MyLocationIcon from '@mui/icons-material/MyLocation';
+import { Button } from '@mui/material';
 
 
 const useStyles = makeStyles({
@@ -59,6 +60,7 @@ export default function SearchBar() {
                             <MyLocationIcon></MyLocationIcon>
                         </IconButton>
                     </Paper>
+                    <Button variant="contained" className={classes.button}>Buscar</Button>
                 </Grid>
             </Grid>
         </Box>

@@ -30,7 +30,7 @@ const useStyles = makeStyles({
 
 });
 
-export default function CardWeather() {
+export default function CardDailyWeather() {
   const classes = useStyles();
 
 
@@ -51,11 +51,6 @@ export default function CardWeather() {
               14ºC
             </Typography>
 
-          </Grid>
-          <Grid item>
-            <Typography className={classes.pus}>
-              9ºC
-            </Typography>
           </Grid>
         </Grid>
 
