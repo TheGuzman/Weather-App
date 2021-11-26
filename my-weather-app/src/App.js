@@ -10,11 +10,8 @@ function App() {
     <React.Fragment>
 
      <ThemeProvider theme={ourtheme}>
-       <WeatherPage>
-  
-       </WeatherPage>
-     </ThemeProvider>
-
+       <WeatherPage></WeatherPage>
+       </ThemeProvider>
     </React.Fragment>
   );
 }
