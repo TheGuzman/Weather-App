@@ -8,10 +8,10 @@ import { ThemeProvider } from '@mui/material/styles';
 function App() {
   return (
     <React.Fragment>
+
      <ThemeProvider theme={ourtheme}>
        <WeatherPage></WeatherPage>
        </ThemeProvider>
-
     </React.Fragment>
   );
 }
