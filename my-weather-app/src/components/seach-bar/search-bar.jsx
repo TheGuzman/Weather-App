@@ -1,13 +1,14 @@
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { makeStyles } from '@material-ui/core/styles'
-import { Button } from '@mui/material';
-
+import { IconButton, InputBase, Paper } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
+import MyLocationIcon from '@mui/icons-material/MyLocation';
 
 
 const useStyles = makeStyles({
-    root:{
-        boxSizing:'content-box'
+    root: {
+        boxSizing: 'content-box'
     },
     container: {
         display: 'flex',
@@ -16,7 +17,7 @@ const useStyles = makeStyles({
         justifyContent: 'center',
     },
     searchBar: {
-        background: 'transparent',
+        background: 'white',
         border: '2px solid white',
         width: '40em',
         height: '2em',
@@ -41,10 +42,23 @@ export default function SearchBar() {
         }}>
             <Grid container >
                 <Grid item xs={12} className={classes.container}>
-                    <div className={classes.container}>
+                    {/* <div className={classes.container}>
                         <input className={classes.searchBar} placeholder='search location'></input>
                         <Button variant="contained" className={classes.button}>Buscar</Button>
-                    </div>
+                    </div> */}
+                    <Paper sx={{borderRadius: '20px'}}>
+                        <IconButton sx={{ p: '10px' }} aria-label="menu">
+                            <SearchIcon />
+                        </IconButton>
+                        <InputBase
+                            sx={{ ml: 1, flex: 1 }}
+                            placeholder="Search Google Maps"
+                            inputProps={{ 'aria-label': 'search google maps' }}
+                        />
+                        <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
+                            <MyLocationIcon></MyLocationIcon>
+                        </IconButton>
+                    </Paper>
                 </Grid>
             </Grid>
         </Box>

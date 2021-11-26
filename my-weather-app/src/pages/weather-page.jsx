@@ -17,6 +17,7 @@ export default function WeatherPage() {
             <Grid item xs={12}>
                 <InteractiveSection></InteractiveSection>
             </Grid>
+           
         </Grid >
     )
 }

@@ -9,7 +9,6 @@ export function CurrentWeatherCard() {
 
     return (
         <Card>
-            
             <Grid container sx={{
                     color: 'primary.contrastText',
                     flexDirection: 'column',

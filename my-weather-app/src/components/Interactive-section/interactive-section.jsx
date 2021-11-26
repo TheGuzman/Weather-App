@@ -18,10 +18,10 @@ export default function InteractiveSection() {
             </Box >
             <Box xs={6}>
                 <Grid item >
-                    <p>Hoy el tiempo suena a...</p>
+                    <p>♫ Hoy el tiempo suena a...</p>
                 </Grid>
                 <Grid item >
-                    <iframe src="https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3" width="473.98" height="443.03" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                    <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DWV1PBrIG2weG?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
                 </Grid>
             </Box >
         </Grid>
