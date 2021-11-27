@@ -1,10 +1,15 @@
 body{
-    background-image: url('../img/background/backgorund_night.jpg');
+    /* background-color: black; */
+    /* /* background: url('../img/background/backgorund_night.jpg'), black;  */
+    background: url('../img/background/backgorund_night.jpg'), linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 100%);
+    background-position: center; 
     background-size: cover;
+    background-attachment:fixed;
+
+    /* background-size: cover, contain;
     background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;
-    /* background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,1) 100%); */
-    
-    
+    background-repeat: no-repeat;*/
+    /* height: 100vh;   */
+   
 }
+    /* background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 100%), url('../img/background/backgorund_night.jpg'); */
