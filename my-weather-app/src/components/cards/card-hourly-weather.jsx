@@ -59,7 +59,7 @@ export default function CardHourlyWeather(props) {
         <HourlyCardTitle >{time}</HourlyCardTitle>
 
         <HourlyCardMedia
-          image={window.location.origin + `/img/${props.info.weather[0].icon}.png`}
+          image={window.location.origin + `/img/${props.info.weather[0].icon}.svg`}
         />
         <HourlyCardTemp>
           {Math.round(props.info.temp)+tempSign}

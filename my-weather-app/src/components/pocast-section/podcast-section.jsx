@@ -12,7 +12,7 @@ import { styled } from '@mui/material/styles';
 export default function PodcastSection(props) {
 
 
-    const city = props.city.name
+    const city = props.city
 
 
     const PodcastTitle = styled(Typography)({
@@ -59,9 +59,3 @@ export default function PodcastSection(props) {
 
                 <Grid item>
                 <CardPodcastSix></CardPodcastSix>
-                </Grid>
-            </Grid>
-            {/* {weeklyArray?.map((e, i) => <Grid item >
-                <CardWeather info={e} key={i}></CardWeather> */}
-        </Grid>)
-}

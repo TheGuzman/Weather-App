@@ -17,7 +17,6 @@ export default function SearchBar(props) {
         e.preventDefault()
         input = searchInfo.toLowerCase();
         input = input.charAt(0).toUpperCase() + input.slice(1);
-        console.log(input)
         props.onSearch(input)
     }
 
@@ -57,8 +56,8 @@ export default function SearchBar(props) {
                             <IconButton type="submit" sx={{ p: '10px' }} aria-label="menu" onClick={handleSubmit}>
                                 <SearchIcon />
                             </IconButton>
-                            <InputBase
-                                sx={{ ml: 1, flex: 1, width: '610px', height: '50px', }}
+                            <InputBase 
+                                sx={{ ml: 1, flex: 1, width: '600px', height: '50px', }}
                                 placeholder="Find a place"
                                 onChange={handleOnChange}
                             />
