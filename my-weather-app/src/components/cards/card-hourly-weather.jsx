@@ -1,69 +1,60 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@mui/material/Grid';
-import { CardMedia } from '@material-ui/core';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import { CardMedia } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 245,
-    background: 'linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(36,36,36,1) 100%)',
-    borderRadius: 15,
 
-  },
-  title: {
-    fontSize: 18,
-    color: 'white'
-  },
-  pos: {
-    marginBottom: 18,
-    color: 'white'
-  },
-  pus: {
-    color: '#888888'
-  },
-  card: {
-    backgroundColor: 'primary.main'
-  },
-  media:{
-    height:'50px',
-    width:'50px',
-  }
-
-});
 
 export default function CardHourlyWeather(props) {
-  const classes = useStyles();
 
-  let time = new Date(props.info.dt*1000).toLocaleTimeString('es-Es', { hour: 'numeric', minute: 'numeric' })
-  console.log(time)
+  let time = new Date(props.info.dt * 1000).toLocaleTimeString('es-Es', { hour: 'numeric', minute: 'numeric' })
+
+  const HourlyCard = styled(Card)({
+    maxWidth: 245,
+    background: ' linear-gradient(180deg, rgba(37, 36, 36, 0) 0%, #252424 68.75%)', /** ESTE ES EL QUE HABÍA ANTES (EL DE AHORA ES EL DEL FIGMA) 'linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(36,36,36,1) 100%)'*/
+    borderRadius: '10px',
+    display: 'flex',
+    alignItems: 'center'
+  })
+  const HourlyCardContent = styled(CardContent)({
+    borderRadius: '4em',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  })
+
+  const HourlyCardMedia = styled(CardMedia)({
+    height: '50px',
+    width: '50px',
+  })
+  const HourlyCardTitle = styled(Typography)({
+    fontSize: 18,
+    color: 'white'
+  })
+  const HourlyCardTemp = styled(Typography)({
+    fontSize: 18,
+    color: 'white',
+    textAlign: 'center',
+  })
 
 
   return (
-    <Card className={classes.root} >
-      <CardContent>
+    <HourlyCard>
+      <HourlyCardContent>
 
-        <Typography className={classes.title}>{time}</Typography>
+        <HourlyCardTitle >{time}</HourlyCardTitle>
 
-        <CardMedia
-          className={classes.media}
+        <HourlyCardMedia
           image={window.location.origin + `/img/${props.info.weather[0].icon}.png`}
         />
+        <HourlyCardTemp>
+          {Math.round(props.info.temp)+'ºC'}
+        </HourlyCardTemp>
 
-        <Grid container spacing={2}>
-          <Grid item>
-            <Typography className={classes.pos}>
-              {props.info.temp}
-            </Typography>
+      </HourlyCardContent>
 
-          </Grid>
-        </Grid>
-
-
-      </CardContent>
-
-    </Card>
+    </HourlyCard>
   );
 }

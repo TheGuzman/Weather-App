@@ -3,7 +3,7 @@ import CircularSpUIv3TBook from './assets/fonts/CircularSpUIv3TBook.ttf';
 
 const ourtheme = createTheme({
   typography: {
-    fontFamily: ['"CircularSpUIv3TBook"','Arial'].join(','),
+    fontFamily: ['"CircularSpUIv3TBook"','Roboto','Arial'].join(','),
   },
   components: {
     MuiCssBaseline: {

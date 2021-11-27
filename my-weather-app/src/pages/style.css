@@ -1,9 +1,11 @@
-body{
-    background-image: url('../img/background/backgorund_night.jpg');
-    background-size: cover;
+#root{
+    /* background-color: black; */
+    background: url('../img/background/backgorund_night.jpg'), black; 
+    /* background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 100%), url('../img/background/backgorund_night.jpg'); */
+    background-size: cover, contain;
     background-position: center;
     background-repeat: no-repeat;
-    height: 100vh;
-    background-color: black;
-    /* background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,1) 100%); */
+    /* height: 100vh;  */
+   
 }
+    /* background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 100%), url('../img/background/backgorund_night.jpg'); */
