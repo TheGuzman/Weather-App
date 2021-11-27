@@ -31,7 +31,7 @@ export default function Header() {
 
             <Grid container>
                 <Grid item container sx={{display:'flex', flexDirection:'row', flexWrap:'nowrap', alignItems:'center'}}>
-                    <Grid item sx={{marginLeft:'2em'}}>
+                    <Grid item sx={{marginLeft:'4em'}}>
                         <img alt='spotify logo' src={spotifyLogo}></img>
                     </Grid>
                     <Grid item container>
