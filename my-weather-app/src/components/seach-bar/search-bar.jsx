@@ -13,8 +13,6 @@ export default function SearchBar(props) {
     let input = '';
     let searchInfo = '';
 
-
-
     function handleSubmit(e) {
         e.preventDefault()
         input = searchInfo.toLowerCase();
@@ -26,6 +24,10 @@ export default function SearchBar(props) {
     function handleOnChange(e) {
         searchInfo = e.target.value
         return searchInfo
+    }
+
+    function handleGeolocation(){
+        props.onGeolocation()
     }
 
 
@@ -50,10 +52,6 @@ export default function SearchBar(props) {
         }}>
             <Grid container >
                 <Grid item container xs={12} sx={{display: 'flex', flexDirection: 'row', alignItems: 'center',justifyContent: 'center',}}>
-                    {/* <div className={classes.container}>
-                        <input className={classes.searchBar} placeholder='search location'></input>
-                        <Button variant="contained" className={classes.button}>Buscar</Button>
-                    </div> */}
                     <Grid item container xs={6}>
                         <Paper sx={{ borderRadius: '50px', marginTop: '50px' }}>
                             <IconButton type="submit" sx={{ p: '10px' }} aria-label="menu" onClick={handleSubmit}>
@@ -64,7 +62,7 @@ export default function SearchBar(props) {
                                 placeholder="Find a place"
                                 onChange={handleOnChange}
                             />
-                            <IconButton type="submit" sx={{ p: '10px' }} aria-label="search" >
+                            <IconButton type="submit" sx={{ p: '10px' }} aria-label="search" onClick={handleGeolocation}>
                                 <MyLocationIcon></MyLocationIcon>
                             </IconButton>
                         </Paper>

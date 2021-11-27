@@ -16,7 +16,8 @@ export default function CardHourlyWeather(props) {
     background: ' linear-gradient(180deg, rgba(37, 36, 36, 0) 0%, #252424 68.75%)', /** ESTE ES EL QUE HABÍA ANTES (EL DE AHORA ES EL DEL FIGMA) 'linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(36,36,36,1) 100%)'*/
     borderRadius: '10px',
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginBottom: '4em',
   })
   const HourlyCardContent = styled(CardContent)({
     borderRadius: '4em',

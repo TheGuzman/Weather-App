@@ -8,6 +8,7 @@ import CardPodcast from '../components/cards/card-podcast.jsx';
 import React from 'react';
 import WeeklyWeatherSection from '../components/weekly-weather-section/weekly-weather-section.jsx';
 import HourlyWeatherSection from '../components/hourly-weather-section/hourly-weather-section.jsx';
+import PodcastSection from '../components/pocast-section/podcast-section.jsx';
 import { useContext, useEffect, useState } from 'react';
 import { tempContext } from '../components/context/context.js'
 import { api } from '../my-config.js'
@@ -16,7 +17,6 @@ import { api } from '../my-config.js'
 
 export default function WeatherPage() {
 
-    let input = ''
     const temp = useContext(tempContext)
     const [newTempUnit, updateTemp] = useState(temp);
     let [currentPositionWeather, setCurrentPositionWeather] = useState({})
@@ -46,11 +46,12 @@ export default function WeatherPage() {
     }
 
     function getWeatherInfoByCity(city) {//Trae el tiempo actual de la ciudad buscada
-        fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + key)
+        fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + key + '&lang=sp')
             .then(resp => resp.json())
             .then(data => {
                 setSearchedCity(data);
-                fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&units=${newTempUnit}&appid=${key}`)
+                console.log(data)
+                fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&units=${newTempUnit}&lang=sp&appid=${key}`)
                     .then(responseWeather => responseWeather.json())
                     .then(r => { setCurrentPositionWeather({ ...r }); console.log(r) })
             })
@@ -60,6 +61,10 @@ export default function WeatherPage() {
 const search = input => {
     getWeatherInfoByCity(input)
 } 
+
+const getPosition = ()=>{
+    getUserCurrentPosition()
+}
 
     // const onTempChange = () => {
     //     if (newTempUnit === 'metric') {
@@ -77,12 +82,12 @@ const search = input => {
 
     return (
         <tempContext.Provider value={newTempUnit}>
-            <Grid container>
+            <Grid container columnSpacing={6}>
                 <Grid item xs={12}>
                     <Header></Header>
                 </Grid>
                 <Grid item xs={12}>
-                    <SearchBar onSearch={search}></SearchBar>
+                    <SearchBar onSearch={search} onGeolocation={getPosition}></SearchBar>
                     {/* <div style={{height:'100em'}}></div> */}
                 </Grid>
                 <Grid item xs={12}>
@@ -93,6 +98,9 @@ const search = input => {
                 </Grid>
                 <Grid item xs={12}>
                     <HourlyWeatherSection info={currentPositionWeather} />
+                </Grid>
+                <Grid item xs={12}>
+                    <PodcastSection info={currentPositionWeather} city={searchedCity} />
                 </Grid>
             </Grid >
         </tempContext.Provider>

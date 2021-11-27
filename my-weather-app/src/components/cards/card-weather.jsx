@@ -9,63 +9,76 @@ import { styled } from '@mui/material/styles';
 export default function CardWeather(props) {
 
   const WeeklyCard = styled(Card)({
-    maxWidth: 245,
+    width: 164,
+    height: 234,
     background: 'linear-gradient(180deg, rgba(57, 57, 57, 0) 0%, #252424 66.67%)', /** ESTE ES EL QUE HABÍA ANTES (EL DE AHORA ES EL DEL FIGMA) 'linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(36,36,36,1) 100%)'*/
-    borderRadius: '10px',
+    borderRadius: '10px',   
+    display:'flex',
+    alignItems: 'stretch',
+    justifyContent: 'center', 
+    marginBottom: '4em'
   })
+
   const WeeklyCardContent = styled(CardContent)({
     borderRadius: '4em',
-    display:'flex',
-    flexDirection:'column',
-    alignItems:'center'
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent:'space-between'
   })
 
   const WeeklyCardMedia = styled(CardMedia)({
     height: '80px',
     width: '80px',
   })
+  const WeeklyCardTitle = styled(Typography)({
+    fontSize: 18,
+    fontWeight: 450,
+    color: 'white',
+    textAlign: 'center',
+  })
 
   const WeeklyCardTemp = styled(Typography)({
     fontSize: 18,
+    fontWeight: 600,
+    lineHeight:'22.77px',
     color: 'white',
-    textAlign:'center',
+    textAlign: 'center',
   })
+  
 
   const WeeklyCardTempMin = styled(Typography)({
     fontSize: 18,
-    fontWeight:500,
+    fontWeight: 500,
     color: '#888888',
-    textAlign:'center',
+    textAlign: 'center',
   })
 
+  let day= new Date (props.info.dt*1000).toLocaleTimeString('es-Es',{weekday:'long'}) //para obtener solo el día de la semana
+  day = day.split(',')[0];
 
   return (
-    <WeeklyCard >
-      <WeeklyCardContent>
+        <WeeklyCard >
+          <WeeklyCardContent>
+            <WeeklyCardTitle >{day}</WeeklyCardTitle>
+            <WeeklyCardMedia
+              image={window.location.origin + `/img/${props.info.weather[0].icon}.png`}
+            />
 
-        <Typography >dia</Typography>
+            <Grid container spacing={2} justifyContent='center' alignItems='center'>
+              <Grid item>
+                <WeeklyCardTemp>
+                  {Math.round(props.info.temp.max) + 'ºC'}
+                </WeeklyCardTemp>
 
-        <WeeklyCardMedia
-          image={window.location.origin + `/img/${props.info.weather[0].icon}.png`}
-        />
-
-        <Grid container spacing={2} justifyContent='center'>
-          <Grid item>
-            <WeeklyCardTemp>
-            {Math.round(props.info.temp.max)+'ºC'}
-            </WeeklyCardTemp>
-
-          </Grid>
-          <Grid item>
-            <WeeklyCardTempMin>
-            {Math.round(props.info.temp.min)+'ºC'}
-            </WeeklyCardTempMin>
-          </Grid>
-        </Grid>
-
-
-      </WeeklyCardContent>
-
-    </WeeklyCard>
+              </Grid>
+              <Grid item>
+                <WeeklyCardTempMin>
+                  {Math.round(props.info.temp.min) + 'ºC'}
+                </WeeklyCardTempMin>
+              </Grid>
+            </Grid>
+          </WeeklyCardContent>
+        </WeeklyCard>
   );
 }

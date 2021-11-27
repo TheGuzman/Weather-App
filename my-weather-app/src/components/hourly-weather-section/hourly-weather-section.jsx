@@ -11,17 +11,19 @@ export default function HourlyWeatherSection(props) {
     const HourlyTitle = styled(Typography)({
         fontSize: '36px',
         fontWeight: '200',
-        color: 'white'
+        color: 'white',
+        marginBottom: '1em',
+        marginLeft: '1em',
     })
 
     return (
         <Grid container sx={{
             color: 'primary.contrastText',
             flexDirection: 'row',
-            justifyContent: 'space-around'
+            justifyContent: 'space-around',
         }}>
             <Grid item container>
-                <HourlyTitle>Por hora</HourlyTitle>
+                <HourlyTitle>El Tiempo por horas</HourlyTitle>
             </Grid>
             {dailyArray?.map((e, i) => <Grid item >
                 <CardHourlyWeather info={e} key={i}></CardHourlyWeather>

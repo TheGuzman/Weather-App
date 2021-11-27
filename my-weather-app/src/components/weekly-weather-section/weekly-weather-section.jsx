@@ -10,7 +10,9 @@ export default function WeeklyWeatherSection(props) {
     const WeeklyTitle = styled(Typography)({
         fontSize: '36px',
         fontWeight:'200',
-        color: 'white'
+        color: 'white',
+        marginBottom: '1em',
+        marginLeft: '1em',
     })
 
     return (
