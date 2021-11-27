@@ -4,12 +4,23 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { CardMedia } from '@mui/material';
 import { styled } from '@mui/material/styles';
-
+import { useContext } from 'react';
+import { tempContext } from '../context/context';
 
 
 export default function CardHourlyWeather(props) {
 
   let time = new Date(props.info.dt * 1000).toLocaleTimeString('es-Es', { hour: 'numeric', minute: 'numeric' })
+
+  const temp = useContext(tempContext)
+  let tempSign = ''
+
+  if(temp==='metric'){
+    tempSign='ºC'
+  }
+  else{
+    tempSign='ºF'
+  }
 
   const HourlyCard = styled(Card)({
     maxWidth: 245,
@@ -51,7 +62,7 @@ export default function CardHourlyWeather(props) {
           image={window.location.origin + `/img/${props.info.weather[0].icon}.png`}
         />
         <HourlyCardTemp>
-          {Math.round(props.info.temp)+'ºC'}
+          {Math.round(props.info.temp)+tempSign}
         </HourlyCardTemp>
 
       </HourlyCardContent>

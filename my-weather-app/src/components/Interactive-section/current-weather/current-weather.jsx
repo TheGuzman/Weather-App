@@ -4,17 +4,32 @@ import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import { CardMedia } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { Box } from '@mui/system';
+import { Button } from '@mui/material';
+import { useContext } from 'react';
+import { tempContext } from '../../context/context.js';
 
 import Typography from '@mui/material/Typography';
 
 export function CurrentWeatherCard(props) {
+
+    const temp = useContext(tempContext)
+    let tempSign = ''
+  
+    if(temp==='metric'){
+      tempSign='ºC'
+    }
+    else{
+      tempSign='ºF'
+    }
+
 
     let day= new Date (props.info.current?.dt*1000).toLocaleTimeString('es-Es',{weekday:'long'}) //para obtener solo el día de la semana
     let date = new Date(props.info.current?.dt*1000).toLocaleString('es-Es', { month: 'long', day: 'numeric'})
     day = day.split(',')[0];
     day = day.charAt(0).toUpperCase()+ day.slice(1);
     const city = props.city.name
-    const temp = props.info.current?.temp
+    const cityTemp = props.info.current?.temp
 
     const CurrentCard = styled(Card)({
         width: '100%',
@@ -24,7 +39,6 @@ export function CurrentWeatherCard(props) {
         display: 'flex',
         flexDirection:'row',
         justifyContent: 'center',
-        marginBottom: '4em'
     })
     const CurrentCardContent = styled(CardContent)({
         display: 'flex',
@@ -56,7 +70,15 @@ export function CurrentWeatherCard(props) {
         color: '#8A8A8A',
         textAlign: 'center',
       })
+
+
+      function handleChangeTemp(){
+          props.onTempChange()
+      }
+
+
     return (
+        <Box>
         <CurrentCard>
                 <CurrentCardContent>
                     <CurrentCardMedia
@@ -69,7 +91,7 @@ export function CurrentWeatherCard(props) {
                         <CurrentCardTitle>{city!==undefined?city:'Madrid'}</CurrentCardTitle>
                         </Grid>
                         <Grid item>
-                        <CurrentCardTemp>{Math.round(temp)+'ºC'}</CurrentCardTemp>
+                        <CurrentCardTemp>{Math.round(cityTemp)+tempSign}</CurrentCardTemp>
                         </Grid>
                         <Grid item container>
                             <Grid item><CurrentCardDate>{day},</CurrentCardDate></Grid>
@@ -78,6 +100,8 @@ export function CurrentWeatherCard(props) {
                     </Grid>
                 </CurrentCardContent>
         </CurrentCard>
+        <Button onClick={handleChangeTemp}>Vacio</Button>
+        </Box>
     )
 }
 

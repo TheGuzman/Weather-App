@@ -5,6 +5,8 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import { CardMedia } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { useContext } from 'react';
+import { tempContext } from '../context/context';
 
 export default function CardWeather(props) {
 
@@ -57,6 +59,18 @@ export default function CardWeather(props) {
   let day= new Date (props.info.dt*1000).toLocaleTimeString('es-Es',{weekday:'long'}) //para obtener solo el día de la semana
   day = day.split(',')[0];
 
+  const temp = useContext(tempContext)
+  let tempSign = ''
+
+  if(temp==='metric'){
+    tempSign='ºC'
+  }
+  else{
+    tempSign='ºF'
+  }
+
+
+
   return (
         <WeeklyCard >
           <WeeklyCardContent>
@@ -68,13 +82,13 @@ export default function CardWeather(props) {
             <Grid container spacing={2} justifyContent='center' alignItems='center'>
               <Grid item>
                 <WeeklyCardTemp>
-                  {Math.round(props.info.temp.max) + 'ºC'}
+                  {Math.round(props.info.temp.max) + tempSign}
                 </WeeklyCardTemp>
 
               </Grid>
               <Grid item>
                 <WeeklyCardTempMin>
-                  {Math.round(props.info.temp.min) + 'ºC'}
+                  {Math.round(props.info.temp.min) + tempSign}
                 </WeeklyCardTempMin>
               </Grid>
             </Grid>

@@ -22,7 +22,7 @@ export default function InteractiveSection(props) {
             <Grid item xs={6} >
                 <Box>
                     <Grid item >
-                        <CurrentWeatherCard info={props.info} city={props.city}></CurrentWeatherCard>
+                        <CurrentWeatherCard info={props.info} city={props.city} onTempChange={props.onTempChange}></CurrentWeatherCard>
                     </Grid>
                 </Box >
             </Grid>

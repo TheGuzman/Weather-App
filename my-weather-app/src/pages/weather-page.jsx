@@ -34,7 +34,7 @@ export default function WeatherPage() {
         else {
             console.log('error')
         }
-    }, [newTempUnit, searchedCity.city])
+    }, [newTempUnit, searchedCity.name])
 
 
     function getUserCurrentPosition() { //Trae la locacalización actual del usuario
@@ -50,7 +50,7 @@ export default function WeatherPage() {
             .then(resp => resp.json())
             .then(data => {
                 setSearchedCity(data);
-                console.log(data)
+                console.log(searchedCity)
                 fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&units=${newTempUnit}&lang=sp&appid=${key}`)
                     .then(responseWeather => responseWeather.json())
                     .then(r => { setCurrentPositionWeather({ ...r }); console.log(r) })
@@ -66,16 +66,16 @@ const getPosition = ()=>{
     getUserCurrentPosition()
 }
 
-    // const onTempChange = () => {
-    //     if (newTempUnit === 'metric') {
-    //         console.log(newTempUnit)
-    //         updateTemp('imperial')
-    //     }
-    //     else {
-    //         console.log(newTempUnit)
-    //         updateTemp('metric')
-    //     }
-    // }
+    const onTempChange = () => {
+        if (newTempUnit === 'metric') {
+            console.log(newTempUnit)
+            updateTemp('imperial')
+        }
+        else {
+            console.log(newTempUnit)
+            updateTemp('metric')
+        }
+    }
 
 
 
@@ -91,7 +91,7 @@ const getPosition = ()=>{
                     {/* <div style={{height:'100em'}}></div> */}
                 </Grid>
                 <Grid item xs={12}>
-                    <InteractiveSection info={currentPositionWeather} city={searchedCity}></InteractiveSection>
+                    <InteractiveSection info={currentPositionWeather} city={searchedCity} onTempChange={onTempChange}></InteractiveSection>
                 </Grid>
                 <Grid item xs={12}>
                     <WeeklyWeatherSection info={currentPositionWeather} />
