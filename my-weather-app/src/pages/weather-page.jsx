@@ -91,7 +91,7 @@ const getPosition = ()=>{
                     {/* <div style={{height:'100em'}}></div> */}
                 </Grid>
                 <Grid item xs={12}>
-                    <InteractiveSection></InteractiveSection>
+                    <InteractiveSection info={currentPositionWeather} city={searchedCity}></InteractiveSection>
                 </Grid>
                 <Grid item xs={12}>
                     <WeeklyWeatherSection info={currentPositionWeather} />

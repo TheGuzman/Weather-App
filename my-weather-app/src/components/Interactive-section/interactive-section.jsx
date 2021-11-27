@@ -4,7 +4,7 @@ import { CurrentWeatherCard } from './current-weather/current-weather';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 
-export default function InteractiveSection() {
+export default function InteractiveSection(props) {
 
     const IframeTitle = styled(Typography)({
         fontSize: '31px',
@@ -22,12 +22,12 @@ export default function InteractiveSection() {
             <Grid item xs={6} >
                 <Box>
                     <Grid item >
-                        <CurrentWeatherCard></CurrentWeatherCard>
+                        <CurrentWeatherCard info={props.info} city={props.city}></CurrentWeatherCard>
                     </Grid>
                 </Box >
             </Grid>
             <Grid item xs={5}>
-                <Box xs={6}>
+                <Box>
                     <Grid item >
                         <IframeTitle>♫ Hoy el tiempo suena a...</IframeTitle>
                     </Grid>
