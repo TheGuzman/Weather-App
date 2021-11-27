@@ -28,7 +28,8 @@ export function CurrentWeatherCard(props) {
     let date = new Date(props.info.current?.dt*1000).toLocaleString('es-Es', { month: 'long', day: 'numeric'})
     day = day.split(',')[0];
     day = day.charAt(0).toUpperCase()+ day.slice(1);
-    const city = props.city.name
+    const city = props.currentCity
+    console.log(props.currentCity)
     const cityTemp = props.info.current?.temp
 
     const CurrentCard = styled(Card)({
@@ -88,7 +89,7 @@ export function CurrentWeatherCard(props) {
                 <CurrentCardContent>
                     <Grid item container sx={{display:'flex', flexDirection:'column', alignItems:'flex-start'}}>
                         <Grid item>
-                        <CurrentCardTitle>{city!==undefined?city:'Madrid'}</CurrentCardTitle>
+                        <CurrentCardTitle>{city!==undefined?city:''}</CurrentCardTitle>
                         </Grid>
                         <Grid item>
                         <CurrentCardTemp>{Math.round(cityTemp)+tempSign}</CurrentCardTemp>

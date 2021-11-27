@@ -20,9 +20,10 @@ export default function WeatherPage() {
     const temp = useContext(tempContext)
     const [newTempUnit, updateTemp] = useState(temp);
     let [currentPositionWeather, setCurrentPositionWeather] = useState({})
+    let [currentCity, setCurrentCity] = useState('')
     let [searchedCity, setSearchedCity] = useState({})
 
-   const key = api;
+    const key = api;
 
     useEffect(() => {
         if (navigator.geolocation && searchedCity.name === undefined) { //Si la localización está activada y no hay ciudad buscada entonces busca por geolocalización
@@ -39,17 +40,22 @@ export default function WeatherPage() {
 
     function getUserCurrentPosition() { //Trae la locacalización actual del usuario
         navigator.geolocation.getCurrentPosition(function (position) {
+            fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=${newTempUnit}&appid=${key}`)
+                .then(response => response.json())
+                .then(currentCity => { setCurrentCity(currentCity.name); console.log(currentCity.name) })/* tras traer los datos del usuario resetea la ciudad buscada a vacío */;
             fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=${newTempUnit}&appid=${key}`)
                 .then(response => response.json())
                 .then(data => { setCurrentPositionWeather({ ...data }); setSearchedCity({})/* tras traer los datos del usuario resetea la ciudad buscada a vacío */; console.log(data) })
         })
     }
 
+
     function getWeatherInfoByCity(city) {//Trae el tiempo actual de la ciudad buscada
         fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + key + '&lang=sp')
             .then(resp => resp.json())
             .then(data => {
                 setSearchedCity(data);
+                setCurrentCity(data.name)
                 console.log(searchedCity)
                 fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&units=${newTempUnit}&lang=sp&appid=${key}`)
                     .then(responseWeather => responseWeather.json())
@@ -58,13 +64,13 @@ export default function WeatherPage() {
     }
 
 
-const search = input => {
-    getWeatherInfoByCity(input)
-} 
+    const search = input => {
+        getWeatherInfoByCity(input)
+    }
 
-const getPosition = ()=>{
-    getUserCurrentPosition()
-}
+    const getPosition = () => {
+        getUserCurrentPosition()
+    }
 
     const onTempChange = () => {
         if (newTempUnit === 'metric') {
@@ -88,10 +94,10 @@ const getPosition = ()=>{
                 </Grid>
                 <Grid item xs={12}>
                     <SearchBar onSearch={search} onGeolocation={getPosition}></SearchBar>
-                    {/* <div style={{height:'100em'}}></div> */}
+
                 </Grid>
                 <Grid item xs={12}>
-                    <InteractiveSection info={currentPositionWeather} city={searchedCity} onTempChange={onTempChange}></InteractiveSection>
+                    <InteractiveSection info={currentPositionWeather} city={searchedCity} currentCity={currentCity} onTempChange={onTempChange}></InteractiveSection>
                 </Grid>
                 <Grid item xs={12}>
                     <WeeklyWeatherSection info={currentPositionWeather} />
@@ -100,7 +106,7 @@ const getPosition = ()=>{
                     <HourlyWeatherSection info={currentPositionWeather} />
                 </Grid>
                 <Grid item xs={12}>
-                    <PodcastSection info={currentPositionWeather} city={searchedCity} />
+                    <PodcastSection info={currentPositionWeather} city={currentCity} />
                 </Grid>
             </Grid >
         </tempContext.Provider>

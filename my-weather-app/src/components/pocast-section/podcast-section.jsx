@@ -7,7 +7,7 @@ export default function PodcastSection(props) {
 
     const weeklyArray = props.info.daily?.slice(1, 7)
 
-    const city = props.city.name
+    const city = props.city
 
 
     const PodcastTitle = styled(Typography)({
@@ -34,7 +34,7 @@ export default function PodcastSection(props) {
             <Grid item container>
                 <PodcastTitle>Los Podcasts más escuchados en</PodcastTitle>
                 <Grid item >
-                    <PodcastCity>{city!==undefined?city:'Madrid'}</PodcastCity>
+                    <PodcastCity>{city!==undefined?city:''}</PodcastCity>
                 </Grid>
             </Grid>
             {/* {weeklyArray?.map((e, i) => <Grid item >
