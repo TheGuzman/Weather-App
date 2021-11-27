@@ -88,7 +88,7 @@ export default function WeatherPage() {
 
     return (
         <tempContext.Provider value={newTempUnit}>
-            <Grid container columnSpacing={6}>
+            <Grid container columnSpacing={2}>
                 <Grid item xs={12}>
                     <Header></Header>
                 </Grid>

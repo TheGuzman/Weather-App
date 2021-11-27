@@ -8,6 +8,7 @@ import { Box } from '@mui/system';
 import { Button } from '@mui/material';
 import { useContext } from 'react';
 import { tempContext } from '../../context/context.js';
+import TempSwitch from './switch-button.jsx';
 
 import Typography from '@mui/material/Typography';
 
@@ -26,10 +27,11 @@ export function CurrentWeatherCard(props) {
 
     let day= new Date (props.info.current?.dt*1000).toLocaleTimeString('es-Es',{weekday:'long'}) //para obtener solo el día de la semana
     let date = new Date(props.info.current?.dt*1000).toLocaleString('es-Es', { month: 'long', day: 'numeric'})
+    
     day = day.split(',')[0];
     day = day.charAt(0).toUpperCase()+ day.slice(1);
+
     const city = props.currentCity
-    console.log(props.currentCity)
     const cityTemp = props.info.current?.temp
 
     const CurrentCard = styled(Card)({
@@ -102,6 +104,7 @@ export function CurrentWeatherCard(props) {
                 </CurrentCardContent>
         </CurrentCard>
         <Button onClick={handleChangeTemp}>Vacio</Button>
+        <TempSwitch></TempSwitch>
         </Box>
     )
 }

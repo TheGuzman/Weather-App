@@ -22,7 +22,7 @@ export default function HourlyWeatherSection(props) {
             flexDirection: 'row',
             justifyContent: 'space-around',
         }}>
-            <Grid item container>
+            <Grid item container >
                 <HourlyTitle>El Tiempo por horas</HourlyTitle>
             </Grid>
             {dailyArray?.map((e, i) => <Grid item >
