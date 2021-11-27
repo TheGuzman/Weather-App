@@ -1,11 +1,16 @@
 import Grid from '@mui/material/Grid';
-import CardWeather from '../cards/card-weather';
+import CardPodcast from '../cards/card-pod1';
+import CardPodcastTwo from '../cards/card-pod2';
+import CardPodcastThree from '../cards/card-pod3';
+import CardPodcastFour from '../cards/card-pod4';
+import CardPodcastFive from '../cards/card-pod5';
+import CardPodcastSix from '../cards/card-pod6';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 
+
 export default function PodcastSection(props) {
 
-    const weeklyArray = props.info.daily?.slice(1, 7)
 
     const city = props.city
 
@@ -17,27 +22,40 @@ export default function PodcastSection(props) {
         marginBottom: '1em',
         marginLeft: '1em',
     })
-    const PodcastCity = styled(Typography)({
-        fontSize: '36px',
-        fontWeight: '600',
-        color: 'white',
-        marginBottom: '1em',
-        marginLeft: '0.4em',
-    })
+   
 
     return (
         <Grid container sx={{
             color: 'primary.contrastText',
             flexDirection: 'row',
-            justifyContent: 'space-around'
+        
         }}>
             <Grid item container>
-                <PodcastTitle>Los Podcasts más escuchados en</PodcastTitle>
-                <Grid item >
-                    <PodcastCity>{city!==undefined?city:''}</PodcastCity>
-                </Grid>
+                <PodcastTitle>Los Podcasts más escuchados en Madrid</PodcastTitle>
+                
+
             </Grid>
-            {/* {weeklyArray?.map((e, i) => <Grid item >
-                <CardWeather info={e} key={i}></CardWeather> */}
-        </Grid>)
-}
+            <Grid container sx={{flexDirection: 'row',
+            justifyContent: 'space-around'}}>
+                <Grid item>
+                <CardPodcast></CardPodcast>
+                </Grid>
+
+                <Grid item>
+                <CardPodcastTwo></CardPodcastTwo>
+                </Grid>
+
+                <Grid item>
+                <CardPodcastThree></CardPodcastThree>
+                </Grid>
+
+                <Grid item>
+                <CardPodcastFour></CardPodcastFour>
+                </Grid>
+
+                <Grid item>
+                <CardPodcastFive></CardPodcastFive>
+                </Grid>
+
+                <Grid item>
+                <CardPodcastSix></CardPodcastSix>
