@@ -77,7 +77,7 @@ export default function InteractiveSection(props) {
                             <Grid item >
                                 <IframeTitle>♫ Hoy el tiempo suena a...</IframeTitle>
                             </Grid>
-                            <Grid item >
+                            <Grid item sx={{marginRight:'1em'}} >
                             {playListToPlay}
                             </Grid>
                         </Box >

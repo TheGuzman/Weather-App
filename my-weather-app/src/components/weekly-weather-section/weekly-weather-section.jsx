@@ -9,7 +9,7 @@ export default function WeeklyWeatherSection(props) {
 
     const WeeklyTitle = styled(Typography)({
         fontSize: '36px',
-        fontWeight:'200',
+        fontWeight: '200',
         color: 'white',
         marginBottom: '1em',
         marginLeft: '1em',
@@ -21,13 +21,19 @@ export default function WeeklyWeatherSection(props) {
             flexDirection: 'row',
             justifyContent: 'space-around'
         }}>
-            <Grid item container>
-            <WeeklyTitle>El tiempo esta semana</WeeklyTitle>
+            <Grid item container >
+                <WeeklyTitle>El tiempo esta semana</WeeklyTitle>
             </Grid>
-            {weeklyArray?.map((e, i) => <Grid item key={i} >
-                <CardWeather info={e} ></CardWeather>
-            </Grid>)}
-        </Grid>
+            <Grid item container sx={{
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                margin: '0em 1em'
+            }}>
+                {weeklyArray?.map((e, i) => <Grid item key={i} >
+                    <CardWeather info={e} ></CardWeather>
+                </Grid>)}
+            </Grid>
+        </Grid >
 
     )
 }

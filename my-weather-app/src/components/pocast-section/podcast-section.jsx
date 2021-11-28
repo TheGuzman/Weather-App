@@ -45,6 +45,7 @@ export default function PodcastSection(props) {
             <Grid container sx={{
                 flexDirection: 'row',
                 justifyContent: 'space-around',
+                margin:'0em 1em'
             }}>
 
                 <Grid item>
