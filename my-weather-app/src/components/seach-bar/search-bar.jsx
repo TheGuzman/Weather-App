@@ -58,11 +58,11 @@ export default function SearchBar(props) {
                             </IconButton>
                             <InputBase 
                                 sx={{ ml: 1, flex: 1, width: '600px', height: '50px', }}
-                                placeholder="Find a place"
+                                placeholder="Tu ubicación"
                                 onChange={handleOnChange}
                             />
                             <IconButton type="submit" sx={{ p: '10px' }} aria-label="search" onClick={handleGeolocation}>
-                                <MyLocationIcon></MyLocationIcon>
+                                <MyLocationIcon sx={{fontSize: 30, color:'#4E4E4E'}}></MyLocationIcon>
                             </IconButton>
                         </Paper>
                     </Grid>
