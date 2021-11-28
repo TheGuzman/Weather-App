@@ -2,6 +2,8 @@ import SwitchUnstyled, { switchUnstyledClasses } from '@mui/base/SwitchUnstyled'
 import { styled } from '@mui/material/styles';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import { Typography } from '@mui/material';
+import Grid from '@mui/material/Grid';
 
 const Root = styled('span')`
   font-size: 13px;
@@ -74,10 +76,14 @@ export default function TempSwitch(props) {
 
   return (
     <FormGroup>
-      <FormControlLabel 
+      <FormControlLabel sx={{ position: 'absolute' }}
         control={<SwitchUnstyled component={Root} defaultChecked onClick={handleChange} />}
-        label='ºC/ºF'
+        label=''
       />
+      <Grid container sx={{display:'flex', flexDirection:'row', alignItems:'center', height: '42px'}}>
+        <Grid><Typography sx={{ position: 'relative', fontSize:'22px', fontWeight:400 }}>ºC</Typography></Grid>
+        <Grid><Typography sx={{ position: 'relative', fontSize:'22px', fontWeight:400, marginLeft:'1em'}}>ºF</Typography></Grid>
+      </Grid>
     </FormGroup>
   )
 
