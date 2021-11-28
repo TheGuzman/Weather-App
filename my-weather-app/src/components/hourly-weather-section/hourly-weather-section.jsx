@@ -25,8 +25,8 @@ export default function HourlyWeatherSection(props) {
             <Grid item container >
                 <HourlyTitle>El Tiempo por horas</HourlyTitle>
             </Grid>
-            {dailyArray?.map((e, i) => <Grid item >
-                <CardHourlyWeather info={e} key={i}></CardHourlyWeather>
+            {dailyArray?.map((e, i) => <Grid item key={i} >
+                <CardHourlyWeather info={e}></CardHourlyWeather>
             </Grid>)}
         </Grid>
 

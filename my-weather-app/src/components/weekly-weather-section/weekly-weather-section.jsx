@@ -24,8 +24,8 @@ export default function WeeklyWeatherSection(props) {
             <Grid item container>
             <WeeklyTitle>El tiempo esta semana</WeeklyTitle>
             </Grid>
-            {weeklyArray?.map((e, i) => <Grid item >
-                <CardWeather info={e} key={i}></CardWeather>
+            {weeklyArray?.map((e, i) => <Grid item key={i} >
+                <CardWeather info={e} ></CardWeather>
             </Grid>)}
         </Grid>
 

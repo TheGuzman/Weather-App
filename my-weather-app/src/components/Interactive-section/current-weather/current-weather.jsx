@@ -5,7 +5,6 @@ import Grid from '@mui/material/Grid';
 import { CardMedia } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Box } from '@mui/system';
-import { Button } from '@mui/material';
 import { useContext } from 'react';
 import { tempContext } from '../../context/context.js';
 import TempSwitch from './switch-button.jsx';
@@ -51,33 +50,33 @@ export function CurrentWeatherCard(props) {
     })
 
     const CurrentCardMedia = styled(CardMedia)({
-        height: '220px',
-        width: '220px',
+        height: '250px',
+        width: '250px',
     })
 
     const CurrentCardTitle = styled(Typography)({
         fontSize: 70,
         fontWeight: 700,
+        lineHeight: '82px',
         color: 'white',
         textAlign: 'left',
       })
       const CurrentCardTemp = styled(Typography)({
-        fontSize: 70,
+        fontSize: '117px',
+        lineHeight:'105px;',
         fontWeight: 700,
         color: 'white',
         textAlign: 'center',
+        margin:'25px 0px',
       })
       const CurrentCardDate = styled(Typography)({
         fontSize: 27,
         fontWeight: 700,
+        lineHeight:'34px;',
         color: '#8A8A8A',
         textAlign: 'center',
       })
 
-
-      function handleChangeTemp(){
-          props.onTempChange()
-      }
 
 
     return (
@@ -103,34 +102,8 @@ export function CurrentWeatherCard(props) {
                     </Grid>
                 </CurrentCardContent>
         </CurrentCard>
-        <Button onClick={handleChangeTemp}>Vacio</Button>
-        <TempSwitch></TempSwitch>
+        <TempSwitch onTempChange={props.onTempChange}></TempSwitch>
         </Box>
     )
 }
 
-
-
-// <Grid item>
-//                     <CardContent>
-//                     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-//                             aaaaa
-//                         </Typography>
-//                     </CardContent>
-//                 </Grid>
-//                 <Grid item container sx={{
-//                     color: 'primary.contrastText',
-//                     flexDirection: 'column',
-//                     justifyContent: 'space-around'
-//                 }}>
-//                     <Grid item>
-//                         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-//                             Word of the Day
-//                         </Typography>
-//                     </Grid>
-//                     <Grid item>
-//                         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-//                             Word of the Day
-//                         </Typography>
-//                     </Grid>
-//                 </Grid>
