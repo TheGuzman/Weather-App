@@ -1,4 +1,5 @@
 import Header from '../components/header/header.jsx'
+import Footer from '../components/footer/footer.jsx'
 import Grid from '@mui/material/Grid';
 import './style.css'
 import SearchBar from '../components/seach-bar/search-bar.jsx';
@@ -111,6 +112,9 @@ return (
             </Grid>
             <Grid item xs={12}>
                 <PodcastSection info={currentPositionWeather} city={currentCity} />
+            </Grid>
+            <Grid item xs={12}>
+                <Footer></Footer>
             </Grid>
         </Grid >
     </tempContext.Provider>

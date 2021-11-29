@@ -8,10 +8,10 @@ import { Box } from '@mui/system';
 import { useContext } from 'react';
 import { tempContext } from '../../context/context.js';
 import TempSwitch from './switch-button.jsx';
-
+import InvertColorsIcon from '@mui/icons-material/InvertColors';
+import { grey } from '@mui/material/colors';
 import Typography from '@mui/material/Typography';
 import ToggleButtons from './toggle-buttons.jsx';
-
 export function CurrentWeatherCard(props) {
 
     const temp = useContext(tempContext)
@@ -77,7 +77,16 @@ export function CurrentWeatherCard(props) {
         color: '#8A8A8A',
         textAlign: 'center',
     })
-
+    const TitleOne = styled(Typography)({
+        fontSize: '32px',
+        fontWeight: '900px',
+        color: grey[50]
+    })
+    const TitleTwo = styled(Typography)({
+        fontSize: '20px',
+        fontWeight: '900px',
+        color: grey[50]
+    })
 
 
     return (
@@ -94,7 +103,9 @@ export function CurrentWeatherCard(props) {
                             <CurrentCardTitle>{city !== undefined ? city : ''}</CurrentCardTitle>
                         </Grid>
                         <Grid item>
+
                             <CurrentCardTemp>{cityTemp !== undefined ? Math.round(cityTemp) + tempSign : ''}</CurrentCardTemp>
+
                         </Grid>
                         <Grid item container>
                             <Grid item><CurrentCardDate>{day},</CurrentCardDate></Grid>
@@ -103,14 +114,26 @@ export function CurrentWeatherCard(props) {
                     </Grid>
                 </CurrentCardContent>
             </CurrentCard>
-            <Grid container sx={{ alignItems: 'center' }} xs={12}>
+   
+            </CurrentCard>
+            <Grid container>
+                <InvertColorsIcon sx={{ color: grey[50], m: '7rem', width: 50, height: 50 }} />
+
+                <Grid item sx={{ m: '5.6rem' }}>
+                    <TitleOne>Humedad</TitleOne>
+                    <br />
+                    <TitleTwo>0.3% humedad</TitleTwo>
+                </Grid>
+            </Grid>
+
+             <Grid container sx={{ alignItems: 'center' }} xs={12}>
                 <Grid item>
                     <ToggleButtons></ToggleButtons>
                 </Grid>
                 <Grid item sx={{margin:'0em 1em'}}>
                     <TempSwitch onTempChange={props.onTempChange}></TempSwitch>
                 </Grid>
-            </Grid>
+      </Grid>
         </Box>
     )
 }

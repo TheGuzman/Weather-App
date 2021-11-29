@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles';
 import { useState } from 'react';
 import { Icon } from '@iconify/react';
 
+
 export default function ToggleButtons() {
   const [property, setProperty] = useState('humedad');
 
