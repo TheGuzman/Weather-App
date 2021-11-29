@@ -103,11 +103,11 @@ export function CurrentWeatherCard(props) {
                     </Grid>
                 </CurrentCardContent>
             </CurrentCard>
-            <Grid container sx={{ justifyContent: 'space-around', alignItems: 'center' }}>
+            <Grid container sx={{ alignItems: 'center' }} xs={12}>
                 <Grid item>
                     <ToggleButtons></ToggleButtons>
                 </Grid>
-                <Grid item>
+                <Grid item sx={{margin:'0em 1em'}}>
                     <TempSwitch onTempChange={props.onTempChange}></TempSwitch>
                 </Grid>
             </Grid>
