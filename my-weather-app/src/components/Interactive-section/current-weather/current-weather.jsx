@@ -16,20 +16,20 @@ export function CurrentWeatherCard(props) {
 
     const temp = useContext(tempContext)
     let tempSign = ''
-  
-    if(temp==='metric'){
-      tempSign='ºC'
+
+    if (temp === 'metric') {
+        tempSign = 'ºC'
     }
-    else{
-      tempSign='ºF'
+    else {
+        tempSign = 'ºF'
     }
 
 
-    let day= new Date (props.info.current?.dt*1000).toLocaleTimeString('es-Es',{weekday:'long'}) //para obtener solo el día de la semana
-    let date = new Date(props.info.current?.dt*1000).toLocaleString('es-Es', { month: 'long', day: 'numeric'})
-    
+    let day = new Date(props.info.current?.dt * 1000).toLocaleTimeString('es-Es', { weekday: 'long' }) //para obtener solo el día de la semana
+    let date = new Date(props.info.current?.dt * 1000).toLocaleString('es-Es', { month: 'long', day: 'numeric' })
+
     day = day.split(',')[0];
-    day = day.charAt(0).toUpperCase()+ day.slice(1);
+    day = day.charAt(0).toUpperCase() + day.slice(1);
 
     const city = props.currentCity
     const cityTemp = props.info.current?.temp
@@ -40,7 +40,7 @@ export function CurrentWeatherCard(props) {
         background: 'transparent',
         boxShadow: 'none',
         display: 'flex',
-        flexDirection:'row',
+        flexDirection: 'row',
         justifyContent: 'center',
     })
     const CurrentCardContent = styled(CardContent)({
@@ -61,56 +61,56 @@ export function CurrentWeatherCard(props) {
         lineHeight: '82px',
         color: 'white',
         textAlign: 'left',
-      })
-      const CurrentCardTemp = styled(Typography)({
+    })
+    const CurrentCardTemp = styled(Typography)({
         fontSize: '117px',
-        lineHeight:'105px;',
+        lineHeight: '105px;',
         fontWeight: 700,
         color: 'white',
         textAlign: 'center',
-        margin:'25px 0px',
-      })
-      const CurrentCardDate = styled(Typography)({
+        margin: '25px 0px',
+    })
+    const CurrentCardDate = styled(Typography)({
         fontSize: 27,
         fontWeight: 700,
-        lineHeight:'34px;',
+        lineHeight: '34px;',
         color: '#8A8A8A',
         textAlign: 'center',
-      })
+    })
 
 
 
     return (
         <Box>
-        <CurrentCard>
+            <CurrentCard>
                 <CurrentCardContent>
                     <CurrentCardMedia
                         image={window.location.origin + `/img/${props.info.current?.weather[0].icon}.svg`}
                     />
                 </CurrentCardContent>
                 <CurrentCardContent>
-                    <Grid item container sx={{display:'flex', flexDirection:'column', alignItems:'flex-start'}}>
+                    <Grid item container sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
                         <Grid item>
-                        <CurrentCardTitle>{city!==undefined?city:''}</CurrentCardTitle>
+                            <CurrentCardTitle>{city !== undefined ? city : ''}</CurrentCardTitle>
                         </Grid>
                         <Grid item>
-                        <CurrentCardTemp>{Math.round(cityTemp)+tempSign}</CurrentCardTemp>
+                            <CurrentCardTemp>{cityTemp !== undefined ? Math.round(cityTemp) + tempSign : ''}</CurrentCardTemp>
                         </Grid>
                         <Grid item container>
                             <Grid item><CurrentCardDate>{day},</CurrentCardDate></Grid>
-                            <Grid item><CurrentCardDate sx={{marginLeft:'0.2em',fontWeight:450}}>{date}</CurrentCardDate></Grid>
+                            <Grid item><CurrentCardDate sx={{ marginLeft: '0.2em', fontWeight: 450 }}>{date}</CurrentCardDate></Grid>
                         </Grid>
                     </Grid>
                 </CurrentCardContent>
-        </CurrentCard>
-        <Grid container  sx={{justifyContent:'space-around', alignItems: 'baseline'}}>
-        <Grid item>    
-        <ToggleButtons></ToggleButtons>
-        </Grid>
-        <Grid item>
-        <TempSwitch onTempChange={props.onTempChange}></TempSwitch>
-        </Grid>
-        </Grid>
+            </CurrentCard>
+            <Grid container sx={{ justifyContent: 'space-around', alignItems: 'center' }}>
+                <Grid item>
+                    <ToggleButtons></ToggleButtons>
+                </Grid>
+                <Grid item>
+                    <TempSwitch onTempChange={props.onTempChange}></TempSwitch>
+                </Grid>
+            </Grid>
         </Box>
     )
 }
