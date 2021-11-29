@@ -1,56 +1,79 @@
 import * as React from 'react';
-import OpacityIcon from '@mui/icons-material/Opacity';
-import AirIcon from '@mui/icons-material/Air';
-import WbSunnyIcon from '@mui/icons-material/WbSunny';
-import Brightness6Icon from '@mui/icons-material/Brightness6';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { styled } from '@mui/material/styles';
-import { grey } from '@mui/material/colors';
+import { useState } from 'react';
+import { Icon } from '@iconify/react';
 
 
 export default function ToggleButtons() {
-  const [alignment, setAlignment] = React.useState('left');
+  const [property, setProperty] = useState('humedad');
 
-  const handleAlignment = (event, newAlignment) => {
-    setAlignment(newAlignment);
+  const [bgColor, setColor] = useState(true)
+
+  const handleChange = (event, newProperty) => {
+    setProperty(newProperty);
+    console.log(newProperty)
   };
 
-  const Button = styled(ToggleButton)({
-    borderRadius: '50px',   
-    display:'flex',
-    alignItems: 'stretch',
-    justifyContent: 'center', 
-    marginBottom: '4em'
+  function handleClick(e){
+    setColor(!bgColor)
+  }
+
+  let fontColor = 'white'
+
+  const ButtonToggleGroup = styled(ToggleButtonGroup)({
+
+    '&.MuiToggleButtonGroup-root .MuiToggleButtonGroup-grouped': {
+      borderRadius: '50%',
+      borderLeft: `2px solid white`
+    },
+    '&.MuiToggleButtonGroup-root.MuiToggleButtonGroup-root .MuiToggleButtonGroup-grouped.Mui-selected': {
+      borderLeft: `2px solid #00CB51`
+    },
+
+    display: 'flex',
+    justifyContent: 'center',
   })
 
+  if(bgColor===true){
+    fontColor='white';
+  }
+  else{
+    fontColor='#00CB51'
+  }
+
+
   return (
-    
-    <ToggleButtonGroup
-      value={alignment}
+
+    <ButtonToggleGroup
+      value={property}
       exclusive
-      onChange={handleAlignment}
-      aria-label="text alignment"
+      onChange={handleChange}
+      onClick={handleClick}
+      aria-label="propiedad"
+      sx={{margin:'0em'}}
+
     >
-        
-      <ToggleButton value="left" aria-label="left aligned" sx={{ m: 3}}>
-        <OpacityIcon sx={{ color: grey[50] }} />
+
+      <ToggleButton  value="humedad" aria-label="humedad" sx={{ border: '2px solid', borderColor:`${property==='humedad'?'#00CB51':'white'}`, m: 3 }} >
+        <Icon icon="fontisto:blood-drop" color={property==='humedad'?'#00CB51':'white'} height="30" width='30' />
+      </ToggleButton>
+
+      <ToggleButton value="viento" aria-label="viento" sx={{ border: '2px solid',borderColor:`${property==='viento'?'#00CB51':'white'}`, m: 3 }}>
+        <Icon icon="mdi:weather-windy" color={property==='viento'?'#00CB51':'white'} height="30" />
 
       </ToggleButton>
-      <ToggleButton value="center" aria-label="centered" sx={{ m: 3}}>
-        <AirIcon sx={{ color: grey[50] }} />
+      <ToggleButton value="uv" aria-label="uv" sx={{ border: '2px solid', borderColor:`${property==='uv'?'#00CB51':'white'}`, m: 3 }}>
+        <Icon icon="carbon:uv-index-alt" color={property==='uv'?'#00CB51':'white'} height='30' />
 
       </ToggleButton>
-      <ToggleButton value="right" aria-label="right aligned" sx={{ m: 3}}>
-        <WbSunnyIcon  sx={{ color: grey[50] }}/>
-
+      <ToggleButton value="sol" aria-label="sol" sx={{ border: '2px solid', borderColor:`${property==='sol'?'#00CB51':'white'}`, m: 3 }}>
+        <Icon icon="mi:sunrise-alt" color={property==='sol'?'#00CB51':'white'} height="30" />
       </ToggleButton>
-      <ToggleButton value="justify" aria-label="justified" sx={{ m: 3}}>
-        <Brightness6Icon sx={{ color: grey[50] }} />
+      
+    </ButtonToggleGroup >
 
-      </ToggleButton>
-    </ToggleButtonGroup >
-    
-    
+
   );
 }

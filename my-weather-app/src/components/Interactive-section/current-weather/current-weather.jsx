@@ -88,6 +88,7 @@ export function CurrentWeatherCard(props) {
         color: grey[50]
     })
 
+
     return (
         <Box>
             <CurrentCard>
@@ -102,7 +103,9 @@ export function CurrentWeatherCard(props) {
                             <CurrentCardTitle>{city !== undefined ? city : ''}</CurrentCardTitle>
                         </Grid>
                         <Grid item>
-                            <CurrentCardTemp>{Math.round(cityTemp) + tempSign}</CurrentCardTemp>
+
+                            <CurrentCardTemp>{cityTemp !== undefined ? Math.round(cityTemp) + tempSign : ''}</CurrentCardTemp>
+
                         </Grid>
                         <Grid item container>
                             <Grid item><CurrentCardDate>{day},</CurrentCardDate></Grid>
@@ -110,11 +113,8 @@ export function CurrentWeatherCard(props) {
                         </Grid>
                     </Grid>
                 </CurrentCardContent>
-
-                <Grid container>
-
-                </Grid>
-
+            </CurrentCard>
+   
             </CurrentCard>
             <Grid container>
                 <InvertColorsIcon sx={{ color: grey[50], m: '7rem', width: 50, height: 50 }} />
@@ -126,15 +126,14 @@ export function CurrentWeatherCard(props) {
                 </Grid>
             </Grid>
 
-            <Grid container sx={{ justifyContent: 'space-around', alignItems: 'baseline' }}>
+             <Grid container sx={{ alignItems: 'center' }} xs={12}>
                 <Grid item>
                     <ToggleButtons></ToggleButtons>
                 </Grid>
-                <Grid item>
+                <Grid item sx={{margin:'0em 1em'}}>
                     <TempSwitch onTempChange={props.onTempChange}></TempSwitch>
                 </Grid>
-                <br />
-            </Grid>
+      </Grid>
         </Box>
     )
 }

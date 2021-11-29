@@ -41,7 +41,7 @@ export default function WeatherPage() {
         navigator.geolocation.getCurrentPosition(function (position) {
             fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=${newTempUnit}&appid=${key}`)
                 .then(response => response.json())
-                .then(currentCity => { setCurrentCity(currentCity.name); })/* tras traer los datos del usuario resetea la ciudad buscada a vacío */;
+                .then(currentCity => { setCurrentCity(currentCity.name);{console.log(currentCity)} })/* tras traer los datos del usuario resetea la ciudad buscada a vacío */;
             fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=${newTempUnit}&appid=${key}`)
                 .then(response => response.json())
                 .then(data => { setCurrentPositionWeather({ ...data }); setSearchedCity({})/* tras traer los datos del usuario resetea la ciudad buscada a vacío */; })
@@ -50,7 +50,7 @@ export default function WeatherPage() {
 
 
     function getWeatherInfoByCity(city) {//Trae el tiempo actual de la ciudad buscada
-        fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + key + '&lang=sp')
+        fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city +'&lang=sp'+ '&appid=' + key)
             .then(resp => resp.json())
             .then(data => { 
                 if (data.cod !== 200) {
