@@ -23,7 +23,7 @@ export default function HourlyWeatherSection(props) {
             justifyContent: 'space-around',
         }}>
             <Grid item container >
-                <HourlyTitle>El Tiempo por horas</HourlyTitle>
+                <HourlyTitle>Por horas</HourlyTitle>
             </Grid>
             <Grid item container sx={{
             flexDirection: 'row',

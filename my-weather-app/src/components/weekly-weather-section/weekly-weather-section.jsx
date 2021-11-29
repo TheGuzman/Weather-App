@@ -22,7 +22,7 @@ export default function WeeklyWeatherSection(props) {
             justifyContent: 'space-around'
         }}>
             <Grid item container >
-                <WeeklyTitle>El tiempo esta semana</WeeklyTitle>
+                <WeeklyTitle>Esta semana</WeeklyTitle>
             </Grid>
             <Grid item container sx={{
                 flexDirection: 'row',

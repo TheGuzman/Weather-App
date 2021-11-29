@@ -10,6 +10,7 @@ import { tempContext } from '../../context/context.js';
 import TempSwitch from './switch-button.jsx';
 
 import Typography from '@mui/material/Typography';
+import ToggleButtons from './toggle-buttons.jsx';
 
 export function CurrentWeatherCard(props) {
 
@@ -102,8 +103,14 @@ export function CurrentWeatherCard(props) {
                     </Grid>
                 </CurrentCardContent>
         </CurrentCard>
+        <Grid container  sx={{justifyContent:'space-around', alignItems: 'baseline'}}>
+        <Grid item>    
+        <ToggleButtons></ToggleButtons>
+        </Grid>
+        <Grid item>
         <TempSwitch onTempChange={props.onTempChange}></TempSwitch>
+        </Grid>
+        </Grid>
         </Box>
     )
 }
-
