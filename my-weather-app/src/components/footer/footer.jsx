@@ -15,7 +15,7 @@ export default function Footer() {
         color: 'white'
     })
     const SpotifySubTitle = styled(Typography)({
-        fontSize: '17px',
+        fontSize: '12px',
         fontWeight: '450',
         color: 'white'
     })
@@ -29,10 +29,10 @@ export default function Footer() {
             display:'flex',
             justifyContent:'space-between',}}>
 
-            <Grid container>
+            <Grid container >
                 <Grid item container sx={{display:'flex', flexDirection:'row', flexWrap:'nowrap', alignItems:'center', alignContent:'center'}}>
                    
-                    <Grid item container>
+                    <Grid item container sx={{alignItems:'center'}}>
                         <Grid item sx={{marginLeft:'650px'}}>
                             <SpotifyTitle> <img alt='spotify logo footer' src={spotifyLogoFooter}></img>Spotify</SpotifyTitle>
                         </Grid>
