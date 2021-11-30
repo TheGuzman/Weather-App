@@ -6,14 +6,14 @@ import { useState } from 'react';
 import { Icon } from '@iconify/react';
 
 
-export default function ToggleButtons() {
-  const [property, setProperty] = useState('humedad');
+export default function ToggleButtons(props) {
+  const [property, setProperty] = useState('');
 
   const [bgColor, setColor] = useState(true)
 
   const handleChange = (event, newProperty) => {
     setProperty(newProperty);
-    console.log(newProperty)
+    props.onButtonChange(newProperty)
   };
 
   function handleClick(e){

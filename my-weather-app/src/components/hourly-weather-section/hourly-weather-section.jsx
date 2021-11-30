@@ -13,7 +13,7 @@ export default function HourlyWeatherSection(props) {
         fontWeight: '200',
         color: 'white',
         marginBottom: '1em',
-        marginLeft: '1em',
+        marginLeft: '1.5em',
     })
 
     return (

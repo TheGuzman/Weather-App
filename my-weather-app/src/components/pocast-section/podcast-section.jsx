@@ -20,14 +20,14 @@ export default function PodcastSection(props) {
         fontWeight: '200',
         color: 'white',
         marginBottom: '1em',
-        marginLeft: '1em',
+        marginLeft: '1.5em',
     })
     const PodcastCity = styled(Typography)({
         fontSize: '36px',
         fontWeight: '700',
         color: 'white',
         marginBottom: '1em',
-        marginLeft: '0.4em',
+        marginLeft: '0.6em',
     })
 
 
