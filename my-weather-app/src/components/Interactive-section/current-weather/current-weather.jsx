@@ -8,25 +8,52 @@ import { Box } from '@mui/system';
 import { useContext } from 'react';
 import { tempContext } from '../../context/context.js';
 import TempSwitch from './switch-button.jsx';
-import InvertColorsIcon from '@mui/icons-material/InvertColors';
 import { grey } from '@mui/material/colors';
 import Typography from '@mui/material/Typography';
 import ToggleButtons from './toggle-buttons.jsx';
+import { Icon } from '@iconify/react';
+import { useState } from 'react';
+
+
+
+
+
+
 export function CurrentWeatherCard(props) {
+
+    let [infoToShow, setInfotoShow] = useState('')
 
     const temp = useContext(tempContext)
     let tempSign = ''
+    let windSign = ''
 
     if (temp === 'metric') {
-        tempSign = 'ºC'
+        tempSign = 'ºC';
+        windSign = 'm/s'
     }
     else {
-        tempSign = 'ºF'
+        tempSign = 'ºF';
+        windSign = 'mph';
     }
+
+    let iconInfo = '';
+    let height = '';
+    let width = '';
+    let marg = '';
+    let textFieldOne = '';
+    let textFieldTwo = '';
 
 
     let day = new Date(props.info.current?.dt * 1000).toLocaleTimeString('es-Es', { weekday: 'long' }) //para obtener solo el día de la semana
     let date = new Date(props.info.current?.dt * 1000).toLocaleString('es-Es', { month: 'long', day: 'numeric' })
+
+    let puestaSol = new Date(props.info.current?.sunset * 1000).toLocaleTimeString();
+
+    puestaSol = puestaSol.substring(0, puestaSol.length-3)
+
+    let salidaSol = new Date(props.info.current?.sunrise * 1000).toLocaleTimeString();
+
+    salidaSol = salidaSol.substring(0, salidaSol.length-3)
 
     day = day.split(',')[0];
     day = day.charAt(0).toUpperCase() + day.slice(1);
@@ -78,15 +105,34 @@ export function CurrentWeatherCard(props) {
         textAlign: 'center',
     })
     const TitleOne = styled(Typography)({
-        fontSize: '32px',
-        fontWeight: '900px',
+        fontSize: 32,
+        fontWeight: 900,
         color: grey[50]
     })
     const TitleTwo = styled(Typography)({
-        fontSize: '20px',
-        fontWeight: '900px',
+        fontSize: 20,
+        lineHeight: '40px',
+        fontWeight: 900,
         color: grey[50]
     })
+
+
+    const onButtonChange = info => {
+        setInfotoShow(info)
+    }
+
+
+    switch (infoToShow) {
+
+        case 'humedad': iconInfo = "fontisto:blood-drop"; height = '70'; width = '38'; marg = 1; textFieldOne = 'Humedad'; textFieldTwo = `${props.info.current?.humidity !== undefined ? props.info.current?.humidity + '%' + ' ' + 'Humedad' : ''}`; break;
+        case 'viento': iconInfo = "mdi:weather-windy"; height = '70'; width = '70'; marg = 0; textFieldOne = 'Viento'; textFieldTwo = `${props.info.current?.["wind_speed"]}` + ' ' + `${windSign}`; break;
+        case 'uv': iconInfo = "carbon:uv-index-alt"; height = '70'; width = '70'; marg = 0; textFieldOne = 'Radiación UV'; textFieldTwo = `${props.info?.current.uvi} UV`; break;
+        case 'sol': iconInfo = "mi:sunrise-alt"; height = '70'; width = '70'; marg = 0; textFieldOne = 'Salida y Puesta de Sol'; textFieldTwo = `${salidaSol}`+ 'h ' + ' ' + `${puestaSol}`+'h'; break;
+
+    }
+
+
+
 
 
     return (
@@ -114,26 +160,25 @@ export function CurrentWeatherCard(props) {
                     </Grid>
                 </CurrentCardContent>
             </CurrentCard>
-   
-            </CurrentCard>
-            <Grid container>
-                <InvertColorsIcon sx={{ color: grey[50], m: '7rem', width: 50, height: 50 }} />
 
-                <Grid item sx={{ m: '5.6rem' }}>
-                    <TitleOne>Humedad</TitleOne>
-                    <br />
-                    <TitleTwo>0.3% humedad</TitleTwo>
+            <Grid container sx={{ margin: '3em 0em', alignItems: 'center' }}>
+                <Grid item sx={{ margin: `1em ${3 + marg + 'em'}` }}>
+                    <Icon icon={iconInfo} color='white' height={height} width={width} />
+                </Grid>
+                <Grid item >
+                    <TitleOne>{textFieldOne}</TitleOne>
+                    <TitleTwo>{textFieldTwo !== undefined ? textFieldTwo : ''}</TitleTwo>
+                </Grid>
+
+                <Grid item container sx={{ alignItems: 'center' }} xs={12}>
+                    <Grid item>
+                        <ToggleButtons onButtonChange={onButtonChange}></ToggleButtons>
+                    </Grid>
+                    <Grid item sx={{ margin: '0em 1em' }}>
+                        <TempSwitch onTempChange={props.onTempChange}></TempSwitch>
+                    </Grid>
                 </Grid>
             </Grid>
-
-             <Grid container sx={{ alignItems: 'center' }} xs={12}>
-                <Grid item>
-                    <ToggleButtons></ToggleButtons>
-                </Grid>
-                <Grid item sx={{margin:'0em 1em'}}>
-                    <TempSwitch onTempChange={props.onTempChange}></TempSwitch>
-                </Grid>
-      </Grid>
-        </Box>
+        </Box >
     )
 }
