@@ -10,8 +10,6 @@ import HourlyWeatherSection from '../components/hourly-weather-section/hourly-we
 import PodcastSection from '../components/pocast-section/podcast-section.jsx';
 import { useContext, useEffect, useState } from 'react';
 import { tempContext } from '../components/context/context.js'
-import { api } from '../my-config.js'
-
 
 
 export default function WeatherPage() {
@@ -25,7 +23,6 @@ export default function WeatherPage() {
 
     const options = { method: 'GET', mode: 'cors', headers: { 'Access-Control-Allow-Origin': '*' } };
 
-    const key = api;
 
     useEffect(() => {
         if (navigator.geolocation && searchedCity.name === undefined) { //Si la localización está activada y no hay ciudad buscada entonces busca por geolocalización
