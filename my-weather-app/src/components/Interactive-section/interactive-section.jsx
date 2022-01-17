@@ -60,7 +60,7 @@ export default function InteractiveSection(props) {
         default: playListToPlay = soleado; break;
     }
             return (
-                <Grid container spacing={8} sx={{
+                <Grid container spacing={4} sx={{
                     color: 'primary.contrastText',
                     flexDirection: 'row',
                     justifyContent: 'space-around'
