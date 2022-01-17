@@ -10,6 +10,7 @@ import HourlyWeatherSection from '../components/hourly-weather-section/hourly-we
 import PodcastSection from '../components/pocast-section/podcast-section.jsx';
 import { useContext, useEffect, useState } from 'react';
 import { tempContext } from '../components/context/context.js'
+import { backUrl } from '../my-config.js'
 
 
 export default function WeatherPage() {
@@ -20,7 +21,7 @@ export default function WeatherPage() {
     let [currentCity, setCurrentCity] = useState('')
     let [searchedCity, setSearchedCity] = useState({})
 
-
+    const url = backUrl
     const options = { method: 'GET', mode: 'cors', headers: { 'Access-Control-Allow-Origin': '*' } };
 
 
@@ -40,11 +41,11 @@ export default function WeatherPage() {
     function getUserCurrentPosition() { //Trae la locacalización actual del usuario
         navigator.geolocation.getCurrentPosition(async function (position) {
 
-            const responseCityFetch = await fetch(`http://localhost:3003/getcitycurrentpositionname/${position.coords.latitude}/${position.coords.longitude}/${newTempUnit}`, options)
+            const responseCityFetch = await fetch(`${url}/getcitycurrentpositionname/${position.coords.latitude}/${position.coords.longitude}/${newTempUnit}`, options)
             const cityFetch = await responseCityFetch.json()
             setCurrentCity(cityFetch.name)
 
-            const responseWeatherFetch = await fetch(`http://localhost:3003/getcitycurrentpositionweather/${position.coords.latitude}/${position.coords.longitude}/${newTempUnit}`, options)
+            const responseWeatherFetch = await fetch(`${url}/getcitycurrentpositionweather/${position.coords.latitude}/${position.coords.longitude}/${newTempUnit}`, options)
             const weatherFetch = await responseWeatherFetch.json()
 
             setCurrentPositionWeather({ ...weatherFetch })
@@ -56,7 +57,7 @@ export default function WeatherPage() {
 
     async function getWeatherInfoByCity(city) {//Trae el tiempo actual de la ciudad buscada
 
-        const reponseSearchedCityFetch = await fetch(`http://localhost:3003/getweatheringfobycity/${city}/${newTempUnit}`, options)
+        const reponseSearchedCityFetch = await fetch(`${url}/getweatheringfobycity/${city}/${newTempUnit}`, options)
         const searchedCityFetch = await reponseSearchedCityFetch.json()
         setSearchedCity(searchedCityFetch.data);
         setCurrentCity(searchedCityFetch.data.name)
