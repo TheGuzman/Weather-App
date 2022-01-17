@@ -49,10 +49,10 @@ export default function SearchBar(props) {
             color: 'primary.contrastText',
             marginBottom: '4em',
         }}>
-            <Grid container >
-                <Grid item container xs={12} sx={{display: 'flex', flexDirection: 'row', alignItems: 'center',justifyContent: 'center',}}>
-                    <Grid item container xs={6}>
-                        <Paper sx={{ borderRadius: '50px', marginTop: '50px' }}>
+            <Grid container sx={{justifyContent: 'center'}} >
+                <Grid item container xs={10} sx={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+                    <Grid item xs={10} container sx={{flexWrap:'nowrap', justifyContent: 'center'}} >
+                        <Paper sx={{ borderRadius: '50px', marginTop: '50px', }}>
                             <IconButton type="submit" sx={{ p: '10px' }} aria-label="menu" onClick={handleSubmit}>
                                 <SearchIcon />
                             </IconButton>
