@@ -10,8 +10,7 @@ import HourlyWeatherSection from '../components/hourly-weather-section/hourly-we
 import PodcastSection from '../components/pocast-section/podcast-section.jsx';
 import { useContext, useEffect, useState } from 'react';
 import { tempContext } from '../components/context/context.js'
-import { api } from '../my-config.js'
-
+import { backUrl } from '../my-config.js'
 
 
 export default function WeatherPage() {
@@ -22,7 +21,9 @@ export default function WeatherPage() {
     let [currentCity, setCurrentCity] = useState('')
     let [searchedCity, setSearchedCity] = useState({})
 
-    const key = api;
+    const url = backUrl
+    const options = { method: 'GET', mode: 'cors', headers: { 'Access-Control-Allow-Origin': '*' } };
+
 
     useEffect(() => {
         if (navigator.geolocation && searchedCity.name === undefined) { //Si la localización está activada y no hay ciudad buscada entonces busca por geolocalización
@@ -38,85 +39,81 @@ export default function WeatherPage() {
 
 
     function getUserCurrentPosition() { //Trae la locacalización actual del usuario
-        navigator.geolocation.getCurrentPosition(function (position) {
-            fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=${newTempUnit}&appid=${key}`)
-                .then(response => response.json())
-                .then(currentCity => { setCurrentCity(currentCity.name);{console.log(currentCity)} })/* tras traer los datos del usuario resetea la ciudad buscada a vacío */;
-            fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=${newTempUnit}&appid=${key}`)
-                .then(response => response.json())
-                .then(data => { setCurrentPositionWeather({ ...data }); setSearchedCity({})/* tras traer los datos del usuario resetea la ciudad buscada a vacío */; })
+        navigator.geolocation.getCurrentPosition(async function (position) {
+
+            const responseCityFetch = await fetch(`${url}/getcitycurrentpositionname/${position.coords.latitude}/${position.coords.longitude}/${newTempUnit}`, options)
+            const cityFetch = await responseCityFetch.json()
+            setCurrentCity(cityFetch.name)
+
+            const responseWeatherFetch = await fetch(`${url}/getcitycurrentpositionweather/${position.coords.latitude}/${position.coords.longitude}/${newTempUnit}`, options)
+            const weatherFetch = await responseWeatherFetch.json()
+
+            setCurrentPositionWeather({ ...weatherFetch })
+            setSearchedCity({})
+
         })
     }
 
 
-    function getWeatherInfoByCity(city) {//Trae el tiempo actual de la ciudad buscada
-        fetch('https://api.openweathermap.org/data/2.5/weather?q=' + city +'&lang=sp'+ '&appid=' + key)
-            .then(resp => resp.json())
-            .then(data => { 
-                if (data.cod !== 200) {
-                    console.log(data.status)
-                }
-                else {
-                    setSearchedCity(data);
-                    setCurrentCity(data.name)
-                    console.log(searchedCity)
-                    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&units=${newTempUnit}&lang=sp&appid=${key}`)
-                        .then(responseWeather => responseWeather.json())
-                        .then(r => { setCurrentPositionWeather({ ...r }); console.log(r) })
+    async function getWeatherInfoByCity(city) {//Trae el tiempo actual de la ciudad buscada
+
+        const reponseSearchedCityFetch = await fetch(`${url}/getweatheringfobycity/${city}/${newTempUnit}`, options)
+        const searchedCityFetch = await reponseSearchedCityFetch.json()
+        setSearchedCity(searchedCityFetch.data);
+        setCurrentCity(searchedCityFetch.data.name)
+        setCurrentPositionWeather({ ...searchedCityFetch.r })
+
     }
-})
-
-}
 
 
-const search = input => {
-    getWeatherInfoByCity(input)
-}
-
-const getPosition = () => {
-    getUserCurrentPosition()
-}
-
-const onTempChange = () => {
-    if (newTempUnit === 'metric') {
-        console.log(newTempUnit)
-        updateTemp('imperial')
+    const search = input => {
+        getWeatherInfoByCity(input)
     }
-    else {
-        console.log(newTempUnit)
-        updateTemp('metric')
+
+    const getPosition = () => {
+        getUserCurrentPosition()
     }
-}
+
+    const onTempChange = () => {
+        if (newTempUnit === 'metric') {
+            console.log(newTempUnit)
+            updateTemp('imperial')
+        }
+        else {
+            console.log(newTempUnit)
+            updateTemp('metric')
+        }
+    }
 
 
 
 
-return (
-    <tempContext.Provider value={newTempUnit}>
-        <Grid container columnSpacing={2}>
-            <Grid item xs={12}>
-                <Header></Header>
-            </Grid>
-            <Grid item xs={12}>
-                <SearchBar onSearch={search} onGeolocation={getPosition}></SearchBar>
+    return (
+        <tempContext.Provider value={newTempUnit}>
+            <Grid container columnSpacing={2}>
+                <Grid item xs={12}>
+                    <Header></Header>
+                </Grid>
+                <Grid item xs={12}>
+                    <SearchBar onSearch={search} onGeolocation={getPosition}></SearchBar>
 
-            </Grid>
-            <Grid item xs={12}>
-                <InteractiveSection info={currentPositionWeather} city={searchedCity} currentCity={currentCity} onTempChange={onTempChange}></InteractiveSection>
-            </Grid>
-            <Grid item xs={12}>
-                <WeeklyWeatherSection info={currentPositionWeather} />
-            </Grid>
-            <Grid item xs={12}>
-                <HourlyWeatherSection info={currentPositionWeather} />
-            </Grid>
-            <Grid item xs={12}>
-                <PodcastSection info={currentPositionWeather} city={currentCity} />
-            </Grid>
-            <Grid item xs={12}>
-                <Footer></Footer>
-            </Grid>
-        </Grid >
-    </tempContext.Provider>
-)
+                </Grid>
+                <Grid item xs={12}>
+                    <InteractiveSection info={currentPositionWeather} city={searchedCity} currentCity={currentCity} onTempChange={onTempChange}></InteractiveSection>
+                </Grid>
+                <Grid item xs={12}>
+                    <WeeklyWeatherSection info={currentPositionWeather} />
+                </Grid>
+                <Grid item xs={12}>
+                    <HourlyWeatherSection info={currentPositionWeather} />
+                </Grid>
+                <Grid item xs={12}>
+                    <PodcastSection info={currentPositionWeather} city={currentCity} />
+                </Grid>
+                <Grid item xs={12}>
+                    <Footer></Footer>
+                </Grid>
+            </Grid >
+        </tempContext.Provider>
+    )
 }
