@@ -62,7 +62,7 @@ export default function CardPodcasThree(props) {
             <PodcastCardTitle >Deforme Semanal Idea Total</PodcastCardTitle>
             <PodcastCardDescription >Podcast • Radio Primavera</PodcastCardDescription>
             
-            <PodcastCardMedia/>
+            <PodcastCardMedia component='img'/>
             <Grid container spacing={2} justifyContent='center' alignItems='center'>
               
             </Grid>

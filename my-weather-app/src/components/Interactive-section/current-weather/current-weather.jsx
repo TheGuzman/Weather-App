@@ -121,14 +121,20 @@ export function CurrentWeatherCard(props) {
         setInfotoShow(info)
     }
 
+    const mensajeHumedad= props.info.current?.humidity + '% '
+
+    const mensajeViento = props.info.current?.["wind_speed"] + ` ${windSign}`
+
+   const  mensajeSol =  `${salidaSol}h ${Array(8).fill('\xa0').join('')} ${puestaSol}h`
+
 
     switch (infoToShow) {
 
-        case 'humedad': iconInfo = "fontisto:blood-drop"; height = '70'; width = '38'; marg = 1; textFieldOne = 'Humedad'; textFieldTwo = `${props.info.current?.humidity !== undefined ? props.info.current?.humidity + '%' + ' ' + 'Humedad' : ''}`; break;
-        case 'viento': iconInfo = "mdi:weather-windy"; height = '70'; width = '70'; marg = 0; textFieldOne = 'Viento'; textFieldTwo = `${props.info.current?.["wind_speed"]}` + ' ' + `${windSign}`; break;
+        case 'humedad': iconInfo = "fontisto:blood-drop"; height = '70'; width = '38'; marg = 1; textFieldOne = 'Humedad'; textFieldTwo = `${props.info.current?.humidity !== undefined ? mensajeHumedad + 'Humedad' : null}`; break;
+        case 'viento': iconInfo = "mdi:weather-windy"; height = '70'; width = '70'; marg = 0; textFieldOne = 'Viento'; textFieldTwo = mensajeViento ; break;
         case 'uv': iconInfo = "carbon:uv-index-alt"; height = '70'; width = '70'; marg = 0; textFieldOne = 'Radiación UV'; textFieldTwo = `${props.info?.current.uvi} UV`; break;
-        case 'sol': iconInfo = "mi:sunrise-alt"; height = '70'; width = '70'; marg = 0; textFieldOne = 'Salida y Puesta de Sol'; textFieldTwo = `${salidaSol}`+ 'h ' + ' ' + `${puestaSol}`+'h'; break;
-
+        case 'sol': iconInfo = "mi:sunrise-alt"; height = '70'; width = '70'; marg = 0; textFieldOne = 'Salida y Puesta de Sol'; textFieldTwo = mensajeSol ; break;
+        default :  break;
     }
 
 

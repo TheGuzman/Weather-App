@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
 import spotifyLogoFooter from '../../img/logos/logo-footer.png';
 import { Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';

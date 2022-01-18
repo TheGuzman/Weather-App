@@ -65,7 +65,7 @@ export default function CardPodcast(props) {
             <PodcastCardTitle >Orgullo</PodcastCardTitle>
             <PodcastCardDescription >Podcast • Spotify Studios</PodcastCardDescription>
             
-            <PodcastCardMedia/>
+            <PodcastCardMedia component='img'/>
             <Grid container spacing={2} justifyContent='center' alignItems='center'>
               
             </Grid>

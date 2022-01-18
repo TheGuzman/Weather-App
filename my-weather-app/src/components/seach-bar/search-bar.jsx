@@ -20,12 +20,21 @@ export default function SearchBar(props) {
         props.onSearch(input)
     }
 
+
+    function handleKeyPress(e) {
+        if (e.key === 'Enter') {
+            console.log(e)
+            handleSubmit()
+        }
+    }
+
     function handleOnChange(e) {
         searchInfo = e.target.value
         return searchInfo
     }
 
-    function handleGeolocation(){
+    function handleGeolocation(e) {
+        e.preventDefault()
         props.onGeolocation()
     }
 
@@ -49,28 +58,33 @@ export default function SearchBar(props) {
             color: 'primary.contrastText',
             marginBottom: '4em',
         }}>
-            <Grid container sx={{justifyContent: 'center'}} >
-                <Grid item container xs={10} sx={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
-                    <Grid item xs={10} container sx={{flexWrap:'nowrap', justifyContent: 'center'}} >
+            <Grid container sx={{ justifyContent: 'center' }} >
+                <Grid item container xs={10} sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+
+                    <Grid item xs={10} container sx={{ flexWrap: 'nowrap', justifyContent: 'center' }} >
+
                         <Paper sx={{ borderRadius: '50px', marginTop: '50px', }}>
-                            <IconButton type="submit" sx={{ p: '10px' }} aria-label="menu" onClick={handleSubmit}>
-                                <SearchIcon />
-                            </IconButton>
-                            <InputBase 
-                                sx={{ ml: 1, flex: 1, width: '600px', height: '50px', }}
-                                placeholder="Tu ubicación"
-                                onChange={handleOnChange}
-                            />
-                            <IconButton type="submit" sx={{ p: '10px' }} aria-label="search" onClick={handleGeolocation}>
-                                <MyLocationIcon sx={{fontSize: 30, color:'#4E4E4E'}}></MyLocationIcon>
-                            </IconButton>
+                            <form>
+                                <IconButton type="submit" sx={{ p: '10px' }} aria-label="menu" onClick={handleSubmit}>
+                                    <SearchIcon />
+                                </IconButton>
+                                <InputBase
+                                    sx={{ ml: 1, flex: 1, width: '600px', height: '50px', }}
+                                    placeholder="Tu ubicación"
+                                    onChange={handleOnChange}
+                                />
+                                <IconButton type="submit" sx={{ p: '10px' }} aria-label="search" onClick={handleGeolocation}>
+                                    <MyLocationIcon sx={{ fontSize: 30, color: '#4E4E4E' }}></MyLocationIcon>
+                                </IconButton>
+                            </form>
                         </Paper>
                     </Grid>
                     <Grid item xs={2} >
-                        <SearchButton variant="contained" onClick={handleSubmit}>Buscar</SearchButton>
+                        <SearchButton variant="contained" onClick={handleSubmit} onKeyDown={handleKeyPress}>Buscar</SearchButton>
                     </Grid>
+
                 </Grid>
             </Grid>
-        </Box>
+        </Box >
     )
 }

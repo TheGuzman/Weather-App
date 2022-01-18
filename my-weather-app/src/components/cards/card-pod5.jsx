@@ -65,7 +65,7 @@ export default function CardPodcasFive(props) {
             <PodcastCardTitle >Oye Polo</PodcastCardTitle>
             <PodcastCardDescription >Podcast • Radio Primavera </PodcastCardDescription>
             
-            <PodcastCardMedia/>
+            <PodcastCardMedia component='img'/>
             <Grid container spacing={2} justifyContent='center' alignItems='center'>
               
             </Grid>
