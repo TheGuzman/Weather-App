@@ -62,7 +62,7 @@ export default function CardPodcastSix(props) {
             <PodcastCardTitle >Ciberlocutorio</PodcastCardTitle>
             <PodcastCardDescription >Podcast • Radio Primavera</PodcastCardDescription>
             
-            <PodcastCardMedia/>
+            <PodcastCardMedia component='img'/>
             <Grid container spacing={2} justifyContent='center' alignItems='center'>
               
             </Grid>

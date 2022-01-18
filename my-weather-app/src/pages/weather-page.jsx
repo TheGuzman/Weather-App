@@ -10,7 +10,6 @@ import HourlyWeatherSection from '../components/hourly-weather-section/hourly-we
 import PodcastSection from '../components/pocast-section/podcast-section.jsx';
 import { useContext, useEffect, useState } from 'react';
 import { tempContext } from '../components/context/context.js'
-import { backUrl } from '../my-config.js'
 
 
 export default function WeatherPage() {
@@ -21,7 +20,7 @@ export default function WeatherPage() {
     let [currentCity, setCurrentCity] = useState('')
     let [searchedCity, setSearchedCity] = useState({})
 
-    const url = backUrl
+    const url = 'https://spotify-weather-backend.herokuapp.com'
     const options = { method: 'GET', mode: 'cors', headers: { 'Access-Control-Allow-Origin': '*' } };
 
 
@@ -35,7 +34,8 @@ export default function WeatherPage() {
         else {
             console.log('error')
         }
-    }, [newTempUnit, searchedCity.name])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [newTempUnit])
 
 
     function getUserCurrentPosition() { //Trae la locacalización actual del usuario
@@ -75,17 +75,9 @@ export default function WeatherPage() {
     }
 
     const onTempChange = () => {
-        if (newTempUnit === 'metric') {
-            console.log(newTempUnit)
-            updateTemp('imperial')
-        }
-        else {
-            console.log(newTempUnit)
-            updateTemp('metric')
-        }
+        if (newTempUnit === 'metric')updateTemp('imperial')
+        else updateTemp('metric')
     }
-
-
 
 
     return (

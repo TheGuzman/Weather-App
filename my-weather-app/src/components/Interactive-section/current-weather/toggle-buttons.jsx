@@ -20,7 +20,6 @@ export default function ToggleButtons(props) {
     setColor(!bgColor)
   }
 
-  let fontColor = 'white'
 
   const ButtonToggleGroup = styled(ToggleButtonGroup)({
 
@@ -35,13 +34,6 @@ export default function ToggleButtons(props) {
     display: 'flex',
     justifyContent: 'center',
   })
-
-  if(bgColor===true){
-    fontColor='white';
-  }
-  else{
-    fontColor='#00CB51'
-  }
 
 
   return (

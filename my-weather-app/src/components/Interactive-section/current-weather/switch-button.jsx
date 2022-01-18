@@ -72,7 +72,7 @@ export default function TempSwitch(props) {
     props.onTempChange()
   };
 
-  const label = { inputProps: { 'aria-label': 'Switch demo' } }
+  // const label = { inputProps: { 'aria-label': 'Switch demo' } }
 
   return (
     <FormGroup>
