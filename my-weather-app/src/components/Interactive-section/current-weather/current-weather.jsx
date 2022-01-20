@@ -43,17 +43,16 @@ export function CurrentWeatherCard(props) {
     let textFieldOne = '';
     let textFieldTwo = '';
 
-
     let day = new Date(props.info.current?.dt * 1000).toLocaleTimeString('es-Es', { weekday: 'long' }) //para obtener solo el día de la semana
     let date = new Date(props.info.current?.dt * 1000).toLocaleString('es-Es', { month: 'long', day: 'numeric' })
-
+    
     let puestaSol = new Date(props.info.current?.sunset * 1000).toLocaleTimeString();
 
-    puestaSol = puestaSol.substring(0, puestaSol.length-3)
+    puestaSol = puestaSol.substring(0, puestaSol.length - 3)
 
     let salidaSol = new Date(props.info.current?.sunrise * 1000).toLocaleTimeString();
 
-    salidaSol = salidaSol.substring(0, salidaSol.length-3)
+    salidaSol = salidaSol.substring(0, salidaSol.length - 3)
 
     day = day.split(',')[0];
     day = day.charAt(0).toUpperCase() + day.slice(1);
@@ -121,20 +120,20 @@ export function CurrentWeatherCard(props) {
         setInfotoShow(info)
     }
 
-    const mensajeHumedad= props.info.current?.humidity + '% '
+    const mensajeHumedad = props.info.current?.humidity + '% '
 
     const mensajeViento = props.info.current?.["wind_speed"] + ` ${windSign}`
 
-   const  mensajeSol =  `${salidaSol}h ${Array(8).fill('\xa0').join('')} ${puestaSol}h`
+    const mensajeSol = `${salidaSol}h ${Array(8).fill('\xa0').join('')} ${puestaSol}h`
 
 
     switch (infoToShow) {
 
         case 'humedad': iconInfo = "fontisto:blood-drop"; height = '70'; width = '38'; marg = 1; textFieldOne = 'Humedad'; textFieldTwo = `${props.info.current?.humidity !== undefined ? mensajeHumedad + 'Humedad' : null}`; break;
-        case 'viento': iconInfo = "mdi:weather-windy"; height = '70'; width = '70'; marg = 0; textFieldOne = 'Viento'; textFieldTwo = mensajeViento ; break;
+        case 'viento': iconInfo = "mdi:weather-windy"; height = '70'; width = '70'; marg = 0; textFieldOne = 'Viento'; textFieldTwo = mensajeViento; break;
         case 'uv': iconInfo = "carbon:uv-index-alt"; height = '70'; width = '70'; marg = 0; textFieldOne = 'Radiación UV'; textFieldTwo = `${props.info?.current.uvi} UV`; break;
-        case 'sol': iconInfo = "mi:sunrise-alt"; height = '70'; width = '70'; marg = 0; textFieldOne = 'Salida y Puesta de Sol'; textFieldTwo = mensajeSol ; break;
-        default :  break;
+        case 'sol': iconInfo = "mi:sunrise-alt"; height = '70'; width = '70'; marg = 0; textFieldOne = 'Salida y Puesta de Sol'; textFieldTwo = mensajeSol; break;
+        default: break;
     }
 
 
