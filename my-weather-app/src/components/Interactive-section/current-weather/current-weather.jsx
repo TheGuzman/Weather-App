@@ -146,7 +146,7 @@ export function CurrentWeatherCard(props) {
             <CurrentCard >
                 <CurrentCardContent>
                     <CurrentCardMedia
-                        image={process.env.PUBLIC_URL + `/img/${props.info.current?.weather[0].icon}.svg`}
+                        image={window.location.origin + `/img/${props.info.current?.weather[0].icon}.svg`}
                     />
                 </CurrentCardContent>
                 <CurrentCardContent>
