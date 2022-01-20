@@ -76,7 +76,7 @@ export default function CardWeather(props) {
           <WeeklyCardContent>
             <WeeklyCardTitle >{day}</WeeklyCardTitle>
             <WeeklyCardMedia
-              image={window.location.origin + `/img/${props.info.weather[0].icon}.svg`}
+              image={process.env.PUBLIC_URL + `/img/${props.info.weather[0].icon}.svg`}
             />
 
             <Grid container spacing={2} justifyContent='center' alignItems='center'>
