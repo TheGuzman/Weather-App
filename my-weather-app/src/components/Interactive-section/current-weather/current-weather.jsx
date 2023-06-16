@@ -35,10 +35,10 @@ export function CurrentWeatherCard(props) {
   let textFieldOne = "";
   let textFieldTwo = "";
 
-  let day = new Date(props.info.current?.dt * 1000).toLocaleTimeString("es-Es", { weekday: "long" }) ?? "Cargando..."; //para obtener solo el día de la semana
-  let date =
-    new Date(props.info.current?.dt * 1000).toLocaleString("es-Es", { month: "long", day: "numeric" }) ?? "Cargando...";
-
+  let day = new Date(props.info.current?.dt * 1000).toLocaleTimeString("es-Es", { weekday: "long" });
+  day = day === "Invalid Date" ? "Cargando..." : day;
+  let date = new Date(props.info.current?.dt * 1000).toLocaleString("es-Es", { month: "long", day: "numeric" });
+  date = date === "Invalid Date" ? "Cargando..." : date;
   let puestaSol = new Date(props.info.current?.sunset * 1000).toLocaleTimeString();
 
   puestaSol = puestaSol.substring(0, puestaSol.length - 3);
